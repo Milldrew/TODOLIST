@@ -39,6 +39,15 @@ export class TodolistsStoreService {
     return of(this.todolists);
   }
 
+  removeTodolist(id: number) {
+    const todolistIndex = this.todolists.findIndex(
+      (todolist) => todolist.id === id
+    );
+    if (todolistIndex < 0) {
+      console.error('todlist: ID' + id + "doesn't exist");
+    }
+    this.todolists.splice(todolistIndex, 1);
+  }
   addTodoList() {
     this.todolists.push({
       authorId: 1,
