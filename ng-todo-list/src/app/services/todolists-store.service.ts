@@ -38,4 +38,15 @@ export class TodolistsStoreService {
   getTodoLists() {
     return of(this.todolists);
   }
+
+  addTodoList() {
+    this.todolists.push({
+      authorId: 1,
+      id: 1,
+      name: 'Complete Software Project',
+      todos: [{ name: 'bar', isFinished: false }],
+    });
+
+    return of(this.todolists);
+  }
 }
