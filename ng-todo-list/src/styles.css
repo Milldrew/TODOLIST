@@ -16,3 +16,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: var(--light-gray);
 }
+app-root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
