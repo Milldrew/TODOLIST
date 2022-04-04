@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --primary-color: #ffe;
-  --secondary-color: #fee;
+  --primary-color: #ff7;
+  --secondary-color: #f77;
+  --active: #da2;
   --light-gray: #eee;
   --gray: #999;
   --dark-gray: #444;

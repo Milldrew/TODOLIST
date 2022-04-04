@@ -1,8 +1,25 @@
 app-todolist {
   display: grid;
   grid-template-columns: 4fr 3fr 1fr;
-  grid-template-row: 1f;
+  grid-template-rows: 1f;
   border: 1px solid white;
   width: 80%;
   padding: 1.5vw;
+}
+
+.add-todo {
+  position: fixed;
+  bottom: 6vw;
+  right: 6vw;
+  height: 6vw;
+  width: 6vw;
+  border-radius: 100%;
+  background-color: var(--secondary-color);
+}
+
+.add-todo:hover {
+  background-color: var(--primary-color);
+}
+.add-todo:active {
+  background-color: var(--active);
 }
