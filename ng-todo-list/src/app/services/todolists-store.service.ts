@@ -47,6 +47,7 @@ export class TodolistsStoreService {
       console.error('todlist: ID' + id + "doesn't exist");
     }
     this.todolists.splice(todolistIndex, 1);
+    return this.todolists;
   }
   addTodoList() {
     this.todolists.push({
