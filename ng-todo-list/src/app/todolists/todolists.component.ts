@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { TodolistsStoreService } from '../services/todolists-store.service';
 
 @Component({
@@ -9,10 +9,12 @@ import { TodolistsStoreService } from '../services/todolists-store.service';
 export class TodolistsComponent implements OnInit {
   todolists: any;
 
-  constructor(public todolistsStore: TodolistsStoreService) {}
+  constructor(
+    @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
+  ) {}
 
   ngOnInit(): void {
-    this.todolistsStore.getTodoLists().subscribe((value) => {
+    this.todolistsStore.getTodoLists().subscribe((value: any) => {
       this.todolists = value;
     });
   }
