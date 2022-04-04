@@ -23,3 +23,11 @@ app-root {
   width: 100%;
   flex-direction: column;
 }
+app-todolists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+}
