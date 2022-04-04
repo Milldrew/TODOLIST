@@ -1,9 +1,15 @@
+a {
+  display: flex;
+  justify-content: center;
+  border: 1px solid white;
+  width: 80%;
+  z-index: 3;
+}
 app-todolist {
   display: grid;
   grid-template-columns: 4fr 3fr 1fr;
   grid-template-rows: 1f;
-  border: 1px solid white;
-  width: 80%;
+  width: 100%;
   padding: 1.5vw;
 }
 

@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TodolistsStoreService } from '../services/todolists-store.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class TodolistsComponent implements OnInit {
   todolists: any;
 
   constructor(
+    private route: ActivatedRoute,
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
   ) {}
 
@@ -18,8 +20,8 @@ export class TodolistsComponent implements OnInit {
       .addTodoList()
       .subscribe((lists: any) => (this.todolists = lists));
   }
-  viewList() {
-    alert('view list');
+  viewList(id: number) {
+    this.route.params;
   }
 
   ngOnInit(): void {
