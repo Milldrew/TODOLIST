@@ -15,19 +15,19 @@ export class TodolistsStoreService {
     },
     {
       authorId: 1,
-      id: 1,
+      id: 2,
       name: 'Read programing book',
       todos: [{ name: 'bar', isFinished: false }],
     },
     {
       authorId: 1,
-      id: 1,
+      id: 3,
       name: 'Listen to programing',
       todos: [{ name: 'bar', isFinished: false }],
     },
     {
       authorId: 1,
-      id: 1,
+      id: 4,
       name: 'Complete Software Project',
       todos: [{ name: 'bar', isFinished: false }],
     },
@@ -52,7 +52,7 @@ export class TodolistsStoreService {
   addTodoList() {
     this.todolists.push({
       authorId: 1,
-      id: 1,
+      id: Math.floor(Math.random() * 1000),
       name: 'New Todo List',
       todos: [{ name: 'new todo', isFinished: false }],
     });
