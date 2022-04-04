@@ -14,6 +14,10 @@ export class ViewTodolistComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  addTodo() {
+    this.todolistData.todos.push({ name: 'New Todo', isFinished: false });
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe((value) => {
       let listId = Number(value['id']);

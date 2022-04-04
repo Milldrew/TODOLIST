@@ -11,7 +11,11 @@ export class TodolistsStoreService {
       authorId: 1,
       id: 1,
       name: 'Program',
-      todos: [{ name: 'bar', isFinished: false }],
+      todos: [
+        { name: 'bar', isFinished: false },
+        { name: 'bar', isFinished: false },
+        { name: 'bar', isFinished: false },
+      ],
     },
     {
       authorId: 1,
@@ -70,4 +74,5 @@ export class TodolistsStoreService {
     console.log(todolist);
     return todolist;
   }
+  removeTodo() {}
 }

@@ -17,6 +17,10 @@ export class TodoComponent implements OnInit {
       this.icon = '□';
     }
   }
+
+  remove() {
+    this.todoData.find();
+  }
   constructor() {}
   @Input()
   todoData: any = {};
