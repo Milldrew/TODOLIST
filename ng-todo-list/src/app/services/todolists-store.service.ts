@@ -43,8 +43,8 @@ export class TodolistsStoreService {
     this.todolists.push({
       authorId: 1,
       id: 1,
-      name: 'Complete Software Project',
-      todos: [{ name: 'bar', isFinished: false }],
+      name: 'New Todo List',
+      todos: [{ name: 'new todo', isFinished: false }],
     });
 
     return of(this.todolists);

@@ -13,6 +13,12 @@ export class TodolistsComponent implements OnInit {
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
   ) {}
 
+  addTodoList() {
+    this.todolistsStore
+      .addTodoList()
+      .subscribe((lists: any) => (this.todolists = lists));
+  }
+
   ngOnInit(): void {
     this.todolistsStore.getTodoLists().subscribe((value: any) => {
       this.todolists = value;

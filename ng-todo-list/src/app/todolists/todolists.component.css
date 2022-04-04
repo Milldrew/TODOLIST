@@ -14,6 +14,11 @@ app-todolist {
   height: 6vw;
   width: 6vw;
   border-radius: 100%;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
   background-color: var(--secondary-color);
 }
 
