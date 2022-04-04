@@ -14,7 +14,8 @@ export class TodolistComponent implements OnInit {
   constructor(
     @Inject(TodolistsStoreService) private todoListStore: TodolistsStoreService
   ) {}
-  removeTodolist(id: number) {
+  removeTodolist(id: number, e: Event) {
+    e.stopPropagation();
     this.todoListStore.removeTodolist(id);
   }
   ngOnInit(): void {}

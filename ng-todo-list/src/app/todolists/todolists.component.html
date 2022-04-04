@@ -1,4 +1,8 @@
 <h1>Todo Lists</h1>
-<app-todolist *ngFor="let todolist of todolists" [todolistData]="todolist">
+<app-todolist
+  *ngFor="let todolist of todolists"
+  [todolistData]="todolist"
+  (click)="viewList()"
+>
 </app-todolist>
 <div class="add-todo" (click)="addTodoList()">+</div>

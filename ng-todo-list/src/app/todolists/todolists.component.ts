@@ -18,6 +18,9 @@ export class TodolistsComponent implements OnInit {
       .addTodoList()
       .subscribe((lists: any) => (this.todolists = lists));
   }
+  viewList() {
+    alert('view list');
+  }
 
   ngOnInit(): void {
     this.todolistsStore.getTodoLists().subscribe((value: any) => {
