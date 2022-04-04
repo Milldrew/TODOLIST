@@ -11,6 +11,11 @@ export class TodoComponent implements OnInit {
 
   toggleFinished() {
     this.isFinished = !this.isFinished;
+    if (this.isFinished) {
+      this.icon = '✓';
+    } else {
+      this.icon = '□';
+    }
   }
   constructor() {}
   @Input()
