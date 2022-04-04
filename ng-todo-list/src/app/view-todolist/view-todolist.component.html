@@ -1,2 +1,4 @@
-<p>view-todolist works!</p>
+<h1>{{ todolistData.name }}</h1>
+
+<app-todo *ngFor="let todo of todolistData.todos" [todoData]="todo"> </app-todo>
 {{ todolistData | json }}

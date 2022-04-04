@@ -31,3 +31,12 @@ app-todolists {
   width: 100%;
   border: 1px solid white;
 }
+
+app-view-todolist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+}

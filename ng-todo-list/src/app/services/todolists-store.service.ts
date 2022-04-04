@@ -29,7 +29,10 @@ export class TodolistsStoreService {
       authorId: 1,
       id: 4,
       name: 'Complete Software Project',
-      todos: [{ name: 'bar', isFinished: false }],
+      todos: [
+        { name: 'create repo', isFinished: false },
+        { name: 'write code', isFinished: false },
+      ],
     },
   ];
 
@@ -58,5 +61,13 @@ export class TodolistsStoreService {
     });
 
     return of(this.todolists);
+  }
+  getTodolistById(id: number) {
+    const todolist = this.todolists.find((todolist) => todolist.id === id);
+    if (!todolist) {
+      console.error('todlist: ID' + id + "doesn't exist");
+    }
+    console.log(todolist);
+    return todolist;
   }
 }
