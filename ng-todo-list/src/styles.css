@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: #ffe;
+  --secondary-color: #fee;
+  --light-gray: #eee;
+  --gray: #999;
+  --dark-gray: #444;
+}
+html,
+body {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: var(--dark-gray);
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--light-gray);
+}
