@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
   selector: 'app-todolist',
@@ -7,10 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TodolistComponent implements OnInit {
   @Input()
-  name: string = 'list name';
-
+  todolistData: any = {};
   percentFinished: string = '0%';
-  constructor() {}
 
+  constructor(
+    @Inject(TodolistsStoreService) private todoListStore: TodolistsStoreService
+  ) {}
+  removeTodolist(id: number) {
+    this.todoListStore.removeTodolist(id);
+  }
   ngOnInit(): void {}
 }
