@@ -1,0 +1,10 @@
+.percent-finished {
+  text-align: center;
+}
+.delete {
+  text-align: right;
+  margin-right: 1vw;
+}
+.name {
+  text-align: left;
+}
