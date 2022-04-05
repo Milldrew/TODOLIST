@@ -6,41 +6,13 @@ import { Todolist } from '../models/todolist';
   providedIn: 'root',
 })
 export class TodolistsStoreService {
-  todolists: Todolist[] = [
-    {
-      authorId: 1,
-      id: 1,
-      name: 'Program',
-      todos: [
-        { name: 'Make git repo', isFinished: false },
-        { name: 'Create Frontend ', isFinished: false },
-        { name: 'Connect to api', isFinished: false },
-      ],
-    },
-    {
-      authorId: 1,
-      id: 2,
-      name: 'Read programing book',
-      todos: [{ name: 'Skim book', isFinished: false }],
-    },
-    {
-      authorId: 1,
-      id: 3,
-      name: 'Listen to programing',
-      todos: [{ name: 'bar', isFinished: false }],
-    },
-    {
-      authorId: 1,
-      id: 4,
-      name: 'Complete Software Project',
-      todos: [
-        { name: 'create repo', isFinished: false },
-        { name: 'write code', isFinished: false },
-      ],
-    },
-  ];
+  todolists: Todolist[];
 
   constructor() {}
+
+  setTodoLists(todolists: Todolist[]) {
+    this.todolists = todolists;
+  }
 
   getTodoLists() {
     return of(this.todolists);
