@@ -26,16 +26,14 @@ export class TodoComponent implements OnInit {
   }
   startEdit() {
     this.beingEdited = true;
-    /*
+  }
+  submitEdit() {
+    this.beingEdited = false;
     const index = this.todolistData.todos.findIndex(
       (todo: any) => todo.name === this.todoData.name
     );
 
-    this.todolistData.todos.splice(index, 1);
-    */
-  }
-  submitEdit() {
-    this.beingEdited = false;
+    this.todolistData.todos[index].name = this.todoEdit;
   }
 
   remove() {
