@@ -29,8 +29,16 @@ export class TodoListService {
     return todoList;
   }
 
-  update(id: number, updateTodoListDto: UpdateTodoListDto) {
-    return `This action updates a #${id} todoList`;
+  async update(id: number, updateTodoListDto: UpdateTodoListDto) {
+    const todoList = await this.todoListRepo.preload({
+      id: +id,
+      ...updateTodoListDto,
+    });
+    if (!todoList) {
+      throw new NotFoundException(`Todo List #${id} not found`);
+    }
+
+    return this.todoListRepo.save(todoList);
   }
 
   async remove(id: number) {
