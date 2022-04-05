@@ -9,6 +9,7 @@ import { TodolistComponent } from './todolists/todolist/todolist.component';
 import { ViewTodolistComponent } from './view-todolist/view-todolist.component';
 import { TodoComponent } from './view-todolist/todo/todo.component';
 import { MenuComponent } from './view-todolist/menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { MenuComponent } from './view-todolist/menu/menu.component';
     TodoComponent,
     MenuComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
