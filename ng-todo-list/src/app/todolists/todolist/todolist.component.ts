@@ -48,6 +48,7 @@ export class TodolistComponent implements OnInit {
   submitEdit() {
     this.beingEdited = false;
     this.todolistData['name'] = this.todolistEdit;
+    this.listApi.updateList(this.todolistData);
     this.emitBeingEdited.emit(this.beingEdited);
   }
   ngOnInit(): void {

@@ -23,7 +23,7 @@ export class TodoComponent implements OnInit {
   @Input()
   todolistData: any;
   todoEdit: string = this.todoData.name;
-  isFinished: boolean = false;
+  isFinished: boolean;
   icon: string = '□';
 
   toggleFinished() {
@@ -68,5 +68,11 @@ export class TodoComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.todoEdit = this.todoData.name;
+    this.isFinished = this.todoData.isFinished;
+    if (this.isFinished) {
+      this.icon = '✓';
+    } else {
+      this.icon = '□';
+    }
   }
 }
