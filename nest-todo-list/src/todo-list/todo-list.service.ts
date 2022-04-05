@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTodoListDto } from './dto/create-todo-list.dto';
@@ -22,7 +22,11 @@ export class TodoListService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} todoList`;
+    const todoList = this.todoListRepo.findOneBy({ id });
+    if (!todoList) {
+      throw new NotFoundException(`Todo List #${id} not found`);
+    }
+    return todoList;
   }
 
   update(id: number, updateTodoListDto: UpdateTodoListDto) {
