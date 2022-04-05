@@ -33,6 +33,11 @@ export class TodoComponent implements OnInit {
     } else {
       this.icon = '□';
     }
+    const index = this.todolistData.todos.findIndex(
+      (todo: any) => todo.name === this.todoData.name
+    );
+    this.todolistData.todos[index]['isFinished'] = this.isFinished;
+    this.listApi.updateList(this.todolistData);
   }
   startEdit() {
     this.beingEdited = true;
