@@ -1,4 +1,11 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
@@ -7,9 +14,12 @@ import { TodolistsStoreService } from 'src/app/services/todolists-store.service'
   styleUrls: ['./todolist.component.css'],
 })
 export class TodolistComponent implements OnInit {
+  @ViewChild('editName') listNameInput: ElementRef;
   @Input()
   todolistData: any = {};
   percentFinished: string = '0%';
+  beingEdited: boolean = false;
+  todolistEdit: string;
 
   constructor(
     @Inject(TodolistsStoreService) private todoListStore: TodolistsStoreService
@@ -18,5 +28,19 @@ export class TodolistComponent implements OnInit {
     e.stopPropagation();
     this.todoListStore.removeTodolist(id);
   }
-  ngOnInit(): void {}
+
+  startEdit(event: Event) {
+    setTimeout(() => {
+      this.listNameInput.nativeElement.focus();
+    }, 100);
+    event.stopPropagation();
+    this.beingEdited = true;
+  }
+  submitEdit() {
+    this.beingEdited = false;
+    this.todolistData['name'] = this.todolistEdit;
+  }
+  ngOnInit(): void {
+    this.todolistEdit = this.todolistData.name;
+  }
 }

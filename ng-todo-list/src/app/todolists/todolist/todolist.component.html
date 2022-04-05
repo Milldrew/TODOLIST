@@ -1,3 +1,11 @@
-<div class="name">{{ todolistData.name }}</div>
+<input
+  #editName
+  *ngIf="beingEdited"
+  (keyup.enter)="submitEdit()"
+  type="text"
+  [(ngModel)]="todolistEdit"
+/>
+<div class="name" *ngIf="!beingEdited">{{ todolistEdit }}</div>
 <div class="percent-finished">{{ percentFinished }}</div>
+<div class="edit" (click)="startEdit($event)">✏️</div>
 <div class="delete" (click)="removeTodolist(todolistData.id, $event)">🗑</div>
