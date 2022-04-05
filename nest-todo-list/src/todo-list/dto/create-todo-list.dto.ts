@@ -1,4 +1,4 @@
-import { IsNumber, IsObject, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsObject, IsString } from 'class-validator';
 
 export type Todo = {
   name: string;
@@ -7,10 +7,8 @@ export type Todo = {
 export class CreateTodoListDto {
   @IsNumber()
   authorId: number;
-  @IsNumber()
-  id: number;
   @IsString()
   name: string;
-  @IsObject({ each: true })
+  @IsArray()
   todos: Todo[];
 }
