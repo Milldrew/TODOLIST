@@ -34,7 +34,13 @@ export class TodolistsComponent implements OnInit {
         this.todolistsStore.setTodoLists(value);
         this.todolists = value;
       });
-    }, 400);
+    }, 2000);
+    setTimeout(() => {
+      this.listApi.getLists().subscribe((value: any) => {
+        this.todolistsStore.setTodoLists(value);
+        this.todolists = value;
+      });
+    }, 100);
   }
   viewList(id: number) {
     if (!this.isBeingEdited) {

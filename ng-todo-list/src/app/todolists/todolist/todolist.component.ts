@@ -8,6 +8,7 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
+import { TodoListApiService } from 'src/app/services/todo-list-api.service';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class TodolistComponent implements OnInit {
   todolistEdit: string;
 
   constructor(
+    @Inject(TodoListApiService) private listApi: TodoListApiService,
     @Inject(TodolistsStoreService) private todoListStore: TodolistsStoreService
   ) {
     this.emitBeingEdited = new EventEmitter<boolean>();
@@ -32,6 +34,7 @@ export class TodolistComponent implements OnInit {
   removeTodolist(id: number, e: Event) {
     e.stopPropagation();
     this.todoListStore.removeTodolist(id);
+    this.listApi.deleteList(id);
   }
 
   startEdit(event: Event) {
