@@ -6,6 +6,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { TodoListApiService } from 'src/app/services/todo-list-api.service';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
@@ -54,7 +55,10 @@ export class TodoComponent implements OnInit {
 
     this.todolistData.todos.splice(index, 1);
   }
-  constructor(private todolistStore: TodolistsStoreService) {}
+  constructor(
+    private todolistStore: TodolistsStoreService,
+    private listApi: TodoListApiService
+  ) {}
   ngOnInit(): void {
     this.todoEdit = this.todoData.name;
   }
