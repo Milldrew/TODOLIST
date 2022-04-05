@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TodoListApiService } from '../services/todo-list-api.service';
 import { TodolistsStoreService } from '../services/todolists-store.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class TodolistsComponent implements OnInit {
   isBeingEdited: boolean;
 
   constructor(
+    private listApi: TodoListApiService,
     private router: Router,
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
   ) {}
@@ -31,8 +33,6 @@ export class TodolistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todolistsStore.getTodoLists().subscribe((value: any) => {
-      this.todolists = value;
-    });
+    this.listApi.getLists().subscribe((value) => (this.todolists = value));
   }
 }
