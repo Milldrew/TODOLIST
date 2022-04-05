@@ -1,6 +1,7 @@
 <div class="icon" (click)="toggleFinished()">{{ icon }}</div>
 <p *ngIf="!beingEdited">{{ todoEdit }}</p>
 <input
+  #editName
   *ngIf="beingEdited"
   (keyup.enter)="submitEdit()"
   type="text"

@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
@@ -7,6 +14,8 @@ import { TodolistsStoreService } from 'src/app/services/todolists-store.service'
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
+  @ViewChild('editName') editNameElement: ElementRef;
+
   beingEdited: boolean = false;
   @Input()
   todoData: any = {};
@@ -26,14 +35,16 @@ export class TodoComponent implements OnInit {
   }
   startEdit() {
     this.beingEdited = true;
+    setTimeout(() => {
+      this.editNameElement.nativeElement.focus();
+    }, 10);
   }
   submitEdit() {
     this.beingEdited = false;
     const index = this.todolistData.todos.findIndex(
       (todo: any) => todo.name === this.todoData.name
     );
-
-    this.todolistData.todos[index].name = this.todoEdit;
+    this.todolistData.todos[index]['name'] = this.todoEdit;
   }
 
   remove() {

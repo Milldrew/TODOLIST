@@ -12,16 +12,16 @@ export class TodolistsStoreService {
       id: 1,
       name: 'Program',
       todos: [
-        { name: 'bar', isFinished: false },
-        { name: 'bar', isFinished: false },
-        { name: 'bar', isFinished: false },
+        { name: 'Make git repo', isFinished: false },
+        { name: 'Create Frontend ', isFinished: false },
+        { name: 'Connect to api', isFinished: false },
       ],
     },
     {
       authorId: 1,
       id: 2,
       name: 'Read programing book',
-      todos: [{ name: 'bar', isFinished: false }],
+      todos: [{ name: 'Skim book', isFinished: false }],
     },
     {
       authorId: 1,
@@ -74,5 +74,5 @@ export class TodolistsStoreService {
     console.log(todolist);
     return todolist;
   }
-  removeTodo() {}
+  removeTodo(todo: any) {}
 }
