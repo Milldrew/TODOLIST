@@ -8,6 +8,7 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
+import { Todo } from 'src/app/models/todo';
 import { TodoListApiService } from 'src/app/services/todo-list-api.service';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
@@ -20,7 +21,7 @@ export class TodolistComponent implements OnInit {
   @ViewChild('editName') listNameInput: ElementRef;
   @Input()
   todolistData: any = {};
-  percentFinished: string = '0%';
+  percentFinished: number;
   beingEdited: boolean = false;
   @Output() emitBeingEdited: EventEmitter<boolean>;
   todolistEdit: string;
@@ -54,5 +55,23 @@ export class TodolistComponent implements OnInit {
   ngOnInit(): void {
     this.todolistEdit = this.todolistData.name;
     this.emitBeingEdited.emit(this.beingEdited);
+    let todoCount = this.todolistData.todos.length;
+    this.percentFinished = this.todolistData.todos.reduce(
+      (acc: any, curr: Todo, index: number) => {
+        if (curr.isFinished) {
+          if (todoCount === index + 1) {
+            acc += 1;
+            return Math.floor((acc / todoCount) * 100);
+          }
+          return (acc += 1);
+        } else {
+          if (todoCount === index + 1) {
+            return Math.floor((acc / todoCount) * 100);
+          }
+          return acc;
+        }
+      },
+      0
+    );
   }
 }
