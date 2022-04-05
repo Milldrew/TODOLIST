@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
 @Component({
   selector: 'app-todo',
@@ -6,6 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
+  beingEdited: boolean = false;
+  @Input()
+  todoData: any = {};
+  @Input()
+  todolistData: any;
+  todoEdit: string = this.todoData.name;
   isFinished: boolean = false;
   icon: string = '□';
 
@@ -17,12 +24,29 @@ export class TodoComponent implements OnInit {
       this.icon = '□';
     }
   }
+  startEdit() {
+    this.beingEdited = true;
+    /*
+    const index = this.todolistData.todos.findIndex(
+      (todo: any) => todo.name === this.todoData.name
+    );
+
+    this.todolistData.todos.splice(index, 1);
+    */
+  }
+  submitEdit() {
+    this.beingEdited = false;
+  }
 
   remove() {
-    this.todoData.find();
+    const index = this.todolistData.todos.findIndex(
+      (todo: any) => todo.name === this.todoData.name
+    );
+
+    this.todolistData.todos.splice(index, 1);
   }
-  constructor() {}
-  @Input()
-  todoData: any = {};
-  ngOnInit(): void {}
+  constructor(private todolistStore: TodolistsStoreService) {}
+  ngOnInit(): void {
+    this.todoEdit = this.todoData.name;
+  }
 }
