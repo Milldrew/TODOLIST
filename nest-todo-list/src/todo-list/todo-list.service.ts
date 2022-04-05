@@ -21,8 +21,8 @@ export class TodoListService {
     return this.todoListRepo.find();
   }
 
-  findOne(id: number) {
-    const todoList = this.todoListRepo.findOneBy({ id });
+  async findOne(id: number) {
+    const todoList = await this.todoListRepo.findOneBy({ id });
     if (!todoList) {
       throw new NotFoundException(`Todo List #${id} not found`);
     }
@@ -33,7 +33,12 @@ export class TodoListService {
     return `This action updates a #${id} todoList`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todoList`;
+  async remove(id: number) {
+    const todoList = await this.todoListRepo.findOneBy({ id });
+    if (!todoList) {
+      throw new NotFoundException(`Todo List #${id} not found`);
+    }
+
+    return this.todoListRepo.remove(todoList);
   }
 }
