@@ -4,7 +4,9 @@ import {
   Inject,
   Input,
   OnInit,
+  Output,
   ViewChild,
+  EventEmitter,
 } from '@angular/core';
 import { TodolistsStoreService } from 'src/app/services/todolists-store.service';
 
@@ -19,11 +21,14 @@ export class TodolistComponent implements OnInit {
   todolistData: any = {};
   percentFinished: string = '0%';
   beingEdited: boolean = false;
+  @Output() emitBeingEdited: EventEmitter<boolean>;
   todolistEdit: string;
 
   constructor(
     @Inject(TodolistsStoreService) private todoListStore: TodolistsStoreService
-  ) {}
+  ) {
+    this.emitBeingEdited = new EventEmitter<boolean>();
+  }
   removeTodolist(id: number, e: Event) {
     e.stopPropagation();
     this.todoListStore.removeTodolist(id);
@@ -35,12 +40,15 @@ export class TodolistComponent implements OnInit {
     }, 100);
     event.stopPropagation();
     this.beingEdited = true;
+    this.emitBeingEdited.emit(this.beingEdited);
   }
   submitEdit() {
     this.beingEdited = false;
     this.todolistData['name'] = this.todolistEdit;
+    this.emitBeingEdited.emit(this.beingEdited);
   }
   ngOnInit(): void {
     this.todolistEdit = this.todolistData.name;
+    this.emitBeingEdited.emit(this.beingEdited);
   }
 }

@@ -1,7 +1,11 @@
 <h1>Todo Lists</h1>
 
 <a *ngFor="let todolist of todolists">
-  <app-todolist [todolistData]="todolist" (click)="viewList(todolist.id)">
+  <app-todolist
+    (emitBeingEdited)="setIsBeingEdited($event)"
+    [todolistData]="todolist"
+    (click)="viewList(todolist.id)"
+  >
   </app-todolist>
 </a>
 <div class="add-todo" (click)="addTodoList()">+</div>

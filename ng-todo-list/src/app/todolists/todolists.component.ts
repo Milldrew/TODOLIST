@@ -9,11 +9,15 @@ import { TodolistsStoreService } from '../services/todolists-store.service';
 })
 export class TodolistsComponent implements OnInit {
   todolists: any;
+  isBeingEdited: boolean;
 
   constructor(
     private router: Router,
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
   ) {}
+  setIsBeingEdited(event: any) {
+    this.isBeingEdited = event;
+  }
 
   addTodoList() {
     this.todolistsStore
@@ -21,7 +25,9 @@ export class TodolistsComponent implements OnInit {
       .subscribe((lists: any) => (this.todolists = lists));
   }
   viewList(id: number) {
-    this.router.navigate(['list', id]);
+    if (!this.isBeingEdited) {
+      this.router.navigate(['list', id]);
+    }
   }
 
   ngOnInit(): void {
