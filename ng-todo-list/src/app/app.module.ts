@@ -7,6 +7,7 @@ import { TodolistsComponent } from './todolists/todolists.component';
 import { TodolistComponent } from './todolists/todolist/todolist.component';
 import { ViewTodolistComponent } from './view-todolist/view-todolist.component';
 import { TodoComponent } from './view-todolist/todo/todo.component';
+import { MenuComponent } from './view-todolist/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { TodoComponent } from './view-todolist/todo/todo.component';
     ViewTodolistComponent,
     TodolistComponent,
     TodoComponent,
+    MenuComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
