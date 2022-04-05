@@ -46,6 +46,7 @@ export class TodoComponent implements OnInit {
       (todo: any) => todo.name === this.todoData.name
     );
     this.todolistData.todos[index]['name'] = this.todoEdit;
+    this.listApi.updateList(this.todolistData);
   }
 
   remove() {
@@ -54,6 +55,7 @@ export class TodoComponent implements OnInit {
     );
 
     this.todolistData.todos.splice(index, 1);
+    this.listApi.updateList(this.todolistData);
   }
   constructor(
     private todolistStore: TodolistsStoreService,
