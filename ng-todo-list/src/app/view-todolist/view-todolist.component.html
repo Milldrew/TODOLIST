@@ -1,10 +1,7 @@
 <h1>{{ todolistData.name }}</h1>
 
 <app-todo *ngFor="let todo of todolistData.todos" [todoData]="todo"> </app-todo>
-<div class="menu"><app-menu></app-menu></div>
-<!-- helloo
 <div class="add-todo" (click)="addTodo()">+</div>
- -->
 <a routerLink="/lists">
   <div class="back">←</div>
 </a>
