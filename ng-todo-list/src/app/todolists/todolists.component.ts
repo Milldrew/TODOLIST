@@ -13,7 +13,7 @@ export class TodolistsComponent implements OnInit {
   isBeingEdited: boolean;
 
   constructor(
-    private listApi: TodoListApiService,
+    @Inject(TodoListApiService) private listApi: TodoListApiService,
     private router: Router,
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
   ) {}
@@ -33,6 +33,6 @@ export class TodolistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listApi.getLists().subscribe((value) => (this.todolists = value));
+    this.listApi.getLists().subscribe((value: any) => (this.todolists = value));
   }
 }
