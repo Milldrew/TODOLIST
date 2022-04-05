@@ -19,4 +19,11 @@ export class TodoListApiService {
   getLists(): Observable<Todolist[]> {
     return this.http.get<Todolist[]>(this.todolistUrl);
   }
+
+  deleteList(id: any): any {
+    console.log('HELLO');
+    return this.http
+      .delete(`${this.todolistUrl}/${id}`)
+      .subscribe((value) => console.log(value));
+  }
 }
