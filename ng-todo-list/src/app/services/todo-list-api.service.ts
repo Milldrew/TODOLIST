@@ -20,6 +20,13 @@ export class TodoListApiService {
     return this.http.get<Todolist[]>(this.todolistUrl);
   }
 
+  updateList(todolist: Todolist) {
+    const { id, ...updateTodolistDto } = todolist;
+    return this.http
+      .patch(`${this.todolistUrl}/${id}`, updateTodolistDto)
+      .subscribe((value) => console.log(value));
+  }
+
   deleteList(id: any): any {
     console.log('HELLO');
     return this.http
