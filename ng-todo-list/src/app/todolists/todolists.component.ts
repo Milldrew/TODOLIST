@@ -22,9 +22,19 @@ export class TodolistsComponent implements OnInit {
   }
 
   addTodoList() {
-    this.todolistsStore
-      .addTodoList()
-      .subscribe((lists: any) => (this.todolists = lists));
+    this.listApi
+      .createList({
+        authorId: 1,
+        name: 'New List',
+        todos: [{ name: 'New Todo', isFinished: false }],
+      })
+      .subscribe((value) => console.log(value));
+    setTimeout(() => {
+      this.listApi.getLists().subscribe((value: any) => {
+        this.todolistsStore.setTodoLists(value);
+        this.todolists = value;
+      });
+    }, 400);
   }
   viewList(id: number) {
     if (!this.isBeingEdited) {
@@ -33,6 +43,9 @@ export class TodolistsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listApi.getLists().subscribe((value: any) => (this.todolists = value));
+    this.listApi.getLists().subscribe((value: any) => {
+      this.todolistsStore.setTodoLists(value);
+      this.todolists = value;
+    });
   }
 }
