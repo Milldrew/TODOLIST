@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
   register() {
     let createUserDto = this.registerForm.value;
     console.log({ createUserDto });
-    this.userApi.registerUser(createUserDto);
+    this.userApi
+      .registerUser(createUserDto)
+      .subscribe((user) => console.log(user));
   }
 }
