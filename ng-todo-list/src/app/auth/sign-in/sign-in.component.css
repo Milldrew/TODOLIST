@@ -26,3 +26,10 @@ button {
   padding: 10px 7px;
   text-align: center;
 }
+a {
+  text-decoration: none;
+}
+
+.password-div {
+  margin-bottom: 20px;
+}
