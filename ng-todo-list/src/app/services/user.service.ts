@@ -6,8 +6,13 @@ import { Observable, of } from 'rxjs';
 })
 export class UserService {
   isAuthenticated: boolean = false;
+  token: string;
   constructor() {}
 
+  setAuthToken(token: string): string {
+    this.token = token;
+    return this.token;
+  }
   setIsAuthenticated(boolean: boolean): boolean {
     this.isAuthenticated = boolean;
     return this.isAuthenticated;

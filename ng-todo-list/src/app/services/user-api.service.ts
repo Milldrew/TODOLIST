@@ -14,8 +14,12 @@ export class UserApiService {
   }
 
   signIn(username: string, password: string) {
-    return this.http
-      .post(this.loginUrl, { username, password })
-      .subscribe((payload) => console.log(payload));
+    try {
+      return this.http.post(this.loginUrl, { username, password });
+    } catch (error: any) {
+      console.error('hello');
+    }
+    console.log('NULL');
+    return null;
   }
 }
