@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   @ViewChild('username') inputElement: ElementRef;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -18,7 +19,7 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    console.log('hello');
+    this.userService.setIsAuthenticated(true);
     this.router.navigate(['lists']);
   }
 }
