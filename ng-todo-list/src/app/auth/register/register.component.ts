@@ -21,6 +21,6 @@ export class RegisterComponent implements OnInit {
     console.log({ createUserDto });
     this.userApi
       .registerUser(createUserDto)
-      .subscribe((user) => console.log(user));
+      .subscribe(() => console.log('user registered'));
   }
 }
