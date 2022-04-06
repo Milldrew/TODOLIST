@@ -19,10 +19,10 @@ export class UserService {
     return this.users;
   }
 
-  findOne(id: number) {
-    const user = this.users.find((user) => user.userId === id);
+  findOneByName(name: string) {
+    const user = this.users.find((user) => user.username === name);
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${name} not found`);
     }
     return user;
   }
