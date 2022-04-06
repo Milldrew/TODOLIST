@@ -1,13 +1,13 @@
 <h1>Sign In</h1>
 
-<form (ngSubmit)="signIn()">
+<form (ngSubmit)="signIn()" [formGroup]="signInForm">
   <div>
     <label>Username: </label>
-    <input #username />
+    <input #username formControlName="username" />
   </div>
   <div class="password-div">
     <label>Password: </label>
-    <input type="passwor" />
+    <input type="password" formControlName="password" />
   </div>
   <span> <a routerLink="/register">Register</a> to sign in. </span>
   <button type="submit">Sign In</button>
