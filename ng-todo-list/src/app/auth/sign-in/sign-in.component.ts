@@ -30,6 +30,20 @@ export class SignInComponent implements OnInit {
 
   signIn() {
     const { username, password } = this.signInForm.value;
-    this.userApi.signIn(username, password);
+    const payload = this.userApi.signIn(username, password);
+    if (payload) {
+      payload.subscribe(
+        ({ access_token }: any) => {
+          this.userService.setAuthToken(access_token);
+          this.userService.setIsAuthenticated(true);
+          this.router.navigate(['lists']);
+        },
+        (error: any) => {
+          if (error.status === 401) {
+            console.error('invalid user information');
+          }
+        }
+      );
+    }
   }
 }
