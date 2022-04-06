@@ -11,6 +11,8 @@
 html,
 body {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   background-color: var(--dark-gray);
@@ -19,6 +21,8 @@ body {
 }
 app-root {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   flex-direction: column;
@@ -39,4 +43,12 @@ app-view-todolist {
   height: 100%;
   width: 100%;
   border: 1px solid white;
+}
+app-sign-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray);
+  width: 60%;
+  padding-bottom: 30px;
 }
