@@ -10,6 +10,8 @@ import { ViewTodolistComponent } from './view-todolist/view-todolist.component';
 import { TodoComponent } from './view-todolist/todo/todo.component';
 import { MenuComponent } from './view-todolist/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './auth/register/register.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     TodolistComponent,
     TodoComponent,
     MenuComponent,
+    RegisterComponent,
+    SignInComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
