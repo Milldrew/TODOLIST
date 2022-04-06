@@ -18,8 +18,5 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  signIn() {
-    this.userService.setIsAuthenticated(true);
-    this.router.navigate(['lists']);
-  }
+  signIn() {}
 }
