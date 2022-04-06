@@ -44,6 +44,14 @@ app-view-todolist {
   width: 100%;
   border: 1px solid white;
 }
+app-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray);
+  width: 60%;
+  padding-bottom: 30px;
+}
 app-sign-in {
   display: flex;
   flex-direction: column;
