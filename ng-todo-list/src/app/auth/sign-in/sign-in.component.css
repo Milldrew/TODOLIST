@@ -13,3 +13,16 @@ label {
   justify-content: center;
   align-items: center;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-top: 18px;
+  width: 40%;
+  padding: 10px 7px;
+  text-align: center;
+}
