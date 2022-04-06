@@ -15,8 +15,13 @@ const routes: Routes = [
     canActivate: [AuthGaurdService],
   },
   { path: 'register', component: RegisterComponent },
-  { path: 'list/:id', component: ViewTodolistComponent },
-  { path: '**', redirectTo: 'lists' },
+  {
+    path: 'list/:id',
+    component: ViewTodolistComponent,
+
+    canActivate: [AuthGaurdService],
+  },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
