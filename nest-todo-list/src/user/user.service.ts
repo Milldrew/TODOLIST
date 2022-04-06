@@ -19,7 +19,7 @@ export class UserService {
     return this.users;
   }
 
-  findOneByName(name: string) {
+  async findOneByName(name: string) {
     const user = this.users.find((user) => user.username === name);
     if (!user) {
       throw new NotFoundException(`User #${name} not found`);
