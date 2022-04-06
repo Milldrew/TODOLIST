@@ -30,13 +30,12 @@ export class UserService {
     return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    const user = this.users.find((user) => user.userId === id);
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = this.userRepo.preload({ userId: id, ...updateUserDto });
     if (!user) {
-      throw new NotFoundException(`User #${id} not found`);
+      throw new NotFoundException(`User #${user} not found!`);
     }
-
-    return `This action updates a #${id} user`;
+    return user;
   }
 
   remove(id: number) {
