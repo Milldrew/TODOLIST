@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,11 +9,16 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class SignInComponent implements OnInit {
   @ViewChild('username') inputElement: ElementRef;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     setTimeout(() => {
       this.inputElement.nativeElement.focus();
     });
+  }
+
+  signIn() {
+    console.log('hello');
+    this.router.navigate(['lists']);
   }
 }

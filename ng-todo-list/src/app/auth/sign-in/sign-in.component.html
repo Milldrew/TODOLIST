@@ -1,6 +1,6 @@
 <h1>Sign In</h1>
 
-<form>
+<form (ngSubmit)="signIn()">
   <div>
     <label>Username: </label>
     <input #username />
@@ -10,5 +10,5 @@
     <input type="passwor" />
   </div>
   <span> <a routerLink="/register">Register</a> to sign in. </span>
-  <button>Sign In</button>
+  <button type="submit">Sign In</button>
 </form>
