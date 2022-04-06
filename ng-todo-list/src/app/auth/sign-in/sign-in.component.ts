@@ -30,6 +30,6 @@ export class SignInComponent implements OnInit {
 
   signIn() {
     const { username, password } = this.signInForm.value;
-    this.userApi.signIn('hello', 'hello');
+    this.userApi.signIn(username, password);
   }
 }
