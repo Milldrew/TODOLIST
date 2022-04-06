@@ -1,6 +1,8 @@
 import { Request, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
+import { JwtAuthGuardService } from './auth/jwt-auth-guard/jwt-auth-guard.service';
 import { LocalAuthGuardService } from './auth/local-auth-guard/local-auth-guard.service';
 
 @Controller()
@@ -15,8 +17,11 @@ export class AppController {
   async login(@Request() req: any) {
     return this.authService.login(req.user);
   }
+
+  @UseGuards(JwtAuthGuardService)
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getHello(@Request() req: any): string {
+    console.log(req.user);
+    return req.user;
   }
 }
