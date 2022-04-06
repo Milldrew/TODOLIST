@@ -23,6 +23,9 @@ export class SignInComponent implements OnInit {
     password: new FormControl(''),
   });
   ngOnInit(): void {
+    if (this.userService.isAuthenticated) {
+      this.router.navigate(['lists']);
+    }
     setTimeout(() => {
       this.inputElement.nativeElement.focus();
     });
