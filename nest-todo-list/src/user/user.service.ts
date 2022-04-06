@@ -33,16 +33,17 @@ export class UserService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     const user = this.userRepo.preload({ userId: id, ...updateUserDto });
     if (!user) {
-      throw new NotFoundException(`User #${user} not found!`);
+      throw new NotFoundException(`User #${id} not found!`);
     }
     return user;
   }
 
-  remove(id: number) {
-    const userIndex = this.users.findIndex((user) => user.userId === id);
-    if (userIndex < 0) {
-      throw new NotFoundException(`User #${id} not found`);
+  async remove(id: number) {
+    const userId = id;
+    const user = await this.userRepo.findOneBy({ userId });
+    if (!user) {
+      throw new NotFoundException(`User #${id} not found!`);
     }
-    return this.users.splice(userIndex, 1);
+    return this.userRepo.remove(user);
   }
 }
