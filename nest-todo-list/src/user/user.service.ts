@@ -37,6 +37,10 @@ export class UserService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    const userIndex = this.users.findIndex((user) => user.userId === id);
+    if (userIndex < 0) {
+      throw new NotFoundException(`User #${id} not found`);
+    }
+    return this.users.splice(userIndex, 1);
   }
 }
