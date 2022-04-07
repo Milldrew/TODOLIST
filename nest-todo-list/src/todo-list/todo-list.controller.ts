@@ -20,11 +20,11 @@ export class TodoListController {
 
   @UseGuards(JwtAuthGuardService)
   @Post()
-  create(@Request() req, @Body() createParticalTodoListDto: any) {
+  create(@Request() req, @Body() createPartialTodoListDto: any) {
     const authorId = req.user['userId'];
     const createTodoListDto: CreateTodoListDto = {
       authorId,
-      ...createParticalTodoListDto,
+      ...createPartialTodoListDto,
     };
     console.table(req.user);
     return this.todoListService.create(createTodoListDto);
@@ -37,16 +37,25 @@ export class TodoListController {
     console.log(req.user);
   }
 
+  @UseGuards(JwtAuthGuardService)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.todoListService.findOne(+id);
   }
 
+  @UseGuards(JwtAuthGuardService)
   @Patch(':id')
   update(
+    @Request() req,
     @Param('id') id: string,
-    @Body() updateTodoListDto: UpdateTodoListDto,
+    @Body() updatePartialTodoListDto: any,
   ) {
+    const authorId = req.user['userId'];
+    const updateTodoListDto: UpdateTodoListDto = {
+      authorId,
+      ...updatePartialTodoListDto,
+    };
+
     return this.todoListService.update(+id, updateTodoListDto);
   }
 
