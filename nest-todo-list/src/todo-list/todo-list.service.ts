@@ -12,8 +12,11 @@ export class TodoListService {
     private readonly todoListRepo: Repository<TodoList>,
   ) {}
 
-  create(createTodoListDto: CreateTodoListDto) {
-    const todoList = this.todoListRepo.create(createTodoListDto);
+  create(createTodoListDto: CreateTodoListDto, authorId: number) {
+    const todoList = this.todoListRepo.create({
+      authorId,
+      ...createTodoListDto,
+    });
     return this.todoListRepo.save(todoList);
   }
 
@@ -34,10 +37,15 @@ export class TodoListService {
     return todoList;
   }
 
-  async update(id: number, updateTodoListDto: UpdateTodoListDto) {
+  async update(
+    id: number,
+    updateTodoListDto: UpdateTodoListDto,
+    authorId: number,
+  ) {
     console.table({ id, ...updateTodoListDto });
     const todoList = await this.todoListRepo.preload({
       id: +id,
+      authorId,
       ...updateTodoListDto,
     });
     if (!todoList) {

@@ -10,7 +10,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
-import { CreateTodoListDto } from './dto/create-todo-list.dto';
+import { AuthorId, CreateTodoListDto } from './dto/create-todo-list.dto';
 import { UpdateTodoListDto } from './dto/update-todo-list.dto';
 import { JwtAuthGuardService } from 'src/auth/jwt-auth-guard/jwt-auth-guard.service';
 
@@ -20,14 +20,9 @@ export class TodoListController {
 
   @UseGuards(JwtAuthGuardService)
   @Post()
-  create(@Request() req, @Body() createPartialTodoListDto: any) {
+  create(@Request() req, @Body() createTodoListDto: CreateTodoListDto) {
     const authorId = req.user['userId'];
-    const createTodoListDto: CreateTodoListDto = {
-      authorId,
-      ...createPartialTodoListDto,
-    };
-    console.table(req.user);
-    return this.todoListService.create(createTodoListDto);
+    return this.todoListService.create(createTodoListDto, authorId);
   }
 
   @UseGuards(JwtAuthGuardService)
@@ -48,15 +43,11 @@ export class TodoListController {
   update(
     @Request() req: any,
     @Param('id') id: string,
-    @Body() updatePartialTodoListDto: any,
+    @Body() updateTodoListDto: UpdateTodoListDto,
   ) {
     const authorId = req.user['userId'];
-    const updateTodoListDto: UpdateTodoListDto = {
-      authorId,
-      ...updatePartialTodoListDto,
-    };
 
-    return this.todoListService.update(+id, updateTodoListDto);
+    return this.todoListService.update(+id, updateTodoListDto, authorId);
   }
 
   @UseGuards(JwtAuthGuardService)
