@@ -1,0 +1,4 @@
+
+HEADER="Authorization: Bearer "$1
+echo $HEADER
+curl -d '{"name": "todo name", "todos": [{"name": "foo", "isFinished": false}]}' -H "Content-Type: application/json" 'http://localhost:3000/todo-list/'  -H "$HEADER"

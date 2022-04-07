@@ -18,8 +18,15 @@ import { JwtAuthGuardService } from 'src/auth/jwt-auth-guard/jwt-auth-guard.serv
 export class TodoListController {
   constructor(private readonly todoListService: TodoListService) {}
 
+  @UseGuards(JwtAuthGuardService)
   @Post()
-  create(@Body() createTodoListDto: CreateTodoListDto) {
+  create(@Request() req, @Body() createParticalTodoListDto: any) {
+    const authorId = req.user['userId'];
+    const createTodoListDto: CreateTodoListDto = {
+      authorId,
+      ...createParticalTodoListDto,
+    };
+    console.table(req.user);
     return this.todoListService.create(createTodoListDto);
   }
 
