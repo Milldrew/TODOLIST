@@ -1,2 +1,2 @@
-curl -X PATCH -d '{"authorId": 1, "name": "PATCH", "todos": [{"name": "PATCH", "isFinished": false}]}' -H "Content-Type: application/json" 'http://localhost:3000/todo-list/'$1
+curl -X PATCH -d '{ "name": "PATCH", "todos": [{"name": "PATCH", "isFinished": false}]}' -H "Content-Type: application/json" 'http://localhost:3000/todo-list/'$1
 

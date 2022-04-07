@@ -46,7 +46,7 @@ export class TodoListController {
   @UseGuards(JwtAuthGuardService)
   @Patch(':id')
   update(
-    @Request() req,
+    @Request() req: any,
     @Param('id') id: string,
     @Body() updatePartialTodoListDto: any,
   ) {
@@ -59,6 +59,7 @@ export class TodoListController {
     return this.todoListService.update(+id, updateTodoListDto);
   }
 
+  @UseGuards(JwtAuthGuardService)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.todoListService.remove(+id);

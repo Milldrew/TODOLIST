@@ -35,6 +35,7 @@ export class TodoListService {
   }
 
   async update(id: number, updateTodoListDto: UpdateTodoListDto) {
+    console.table({ id, ...updateTodoListDto });
     const todoList = await this.todoListRepo.preload({
       id: +id,
       ...updateTodoListDto,

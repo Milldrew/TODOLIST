@@ -1,4 +1,4 @@
 HEADER="Authorization: Bearer "$1
 
-curl -X PATCH -d '{"authorId": 1, "name": "PATCH", "todos": [{"name": "PATCH", "isFinished": false}]}' -H "Content-Type: application/json" 'http://localhost:3000/todo-list/33'  -H "$HEADER"
+curl -X PATCH -d '{ "name": "PATCH", "todos": [{"name": "PATCH", "isFinished": false}]}' -H "Content-Type: application/json" 'http://localhost:3000/todo-list/45'  -H "$HEADER"
 
