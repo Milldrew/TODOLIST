@@ -20,11 +20,15 @@ export class TodoListService {
     return this.todoListRepo.save(todoList);
   }
 
-  findAll(user: any) {
+  async findAll(user: any) {
     const id: any = user['userId'];
     console.log('FIND ALL LISTS SERVICE');
-    return this.todoListRepo.findBy({
+    const lists = await this.todoListRepo.findBy({
       authorId: id,
+    });
+    return lists.map((list) => {
+      const { authorId, ...newList } = list;
+      return newList;
     });
   }
 

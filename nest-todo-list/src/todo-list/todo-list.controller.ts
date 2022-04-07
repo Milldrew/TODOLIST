@@ -22,6 +22,7 @@ export class TodoListController {
   @Post()
   create(@Request() req, @Body() createTodoListDto: CreateTodoListDto) {
     const authorId = req.user['userId'];
+    console.log(createTodoListDto);
     return this.todoListService.create(createTodoListDto, authorId);
   }
 
@@ -40,7 +41,7 @@ export class TodoListController {
   @UseGuards(JwtAuthGuardService)
   @Patch(':id')
   update(
-    @Request() req: any,
+    @Request() req,
     @Param('id') id: string,
     @Body() updateTodoListDto: UpdateTodoListDto,
   ) {
