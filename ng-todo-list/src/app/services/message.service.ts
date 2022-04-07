@@ -7,9 +7,10 @@ import { of } from 'rxjs';
 export class MessageService {
   constructor() {}
   messages: string[] = [];
-  messages$ = of(this.messages);
   displayMessage(message: string) {
     this.messages.push(message);
-    return this.messages$;
+    setTimeout(() => {
+      this.messages.shift();
+    }, 2000);
   }
 }

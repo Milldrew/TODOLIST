@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from './services/message.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -8,7 +9,11 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public messageService: MessageService
+  ) {}
   title = 'ng-todo-list';
 
   isAuthenticated: boolean;
@@ -17,6 +22,7 @@ export class AppComponent {
     this.userService.setIsAuthenticated(false);
     this.userService.setAuthToken(null);
     this.router.navigate(['']);
+    this.messageService.displayMessage('Signed Out!');
   }
   ngAfterContentChecked() {
     this.userService.isAuthenticated$.subscribe(

@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from '../services/message.service';
 import { TodoListApiService } from '../services/todo-list-api.service';
 import { TodolistsStoreService } from '../services/todolists-store.service';
 
@@ -13,6 +14,7 @@ export class TodolistsComponent implements OnInit {
   isBeingEdited: boolean;
 
   constructor(
+    public messageService: MessageService,
     @Inject(TodoListApiService) private listApi: TodoListApiService,
     private router: Router,
     @Inject(TodolistsStoreService) public todolistsStore: TodolistsStoreService
@@ -27,7 +29,15 @@ export class TodolistsComponent implements OnInit {
         name: 'New List',
         todos: [{ name: 'New Todo', isFinished: false }],
       })
-      .subscribe((value) => console.log(value));
+      .subscribe(
+        (value) => {
+          console.log(value);
+          this.messageService.displayMessage('Created Todo List');
+        },
+        (error) => {
+          this.messageService.displayMessage('Failed to create Todo List');
+        }
+      );
     setTimeout(() => {
       this.listApi.getLists().subscribe((value: any) => {
         this.todolistsStore.setTodoLists(value);

@@ -7,15 +7,8 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./message-box.component.css'],
 })
 export class MessageBoxComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
-  messages: any[] = [];
-  hasMessages: boolean = !!this.messages.length;
+  constructor(public messageService: MessageService) {}
 
-  ngAfterContentChecked() {
-    this.hasMessages = !!this.messages.length;
-    this.messageService
-      .displayMessage('hi')
-      .subscribe((value) => (this.messages = value));
-  }
+  ngAfterContentChecked() {}
   ngOnInit(): void {}
 }

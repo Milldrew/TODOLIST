@@ -1,6 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 import { UserApiService } from 'src/app/services/user-api.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,6 +20,7 @@ export class SignInComponent implements OnInit {
   @ViewChild('username') inputElement: ElementRef;
 
   constructor(
+    @Inject(MessageService) private messageService: MessageService,
     private router: Router,
     private userService: UserService,
     private userApi: UserApiService
@@ -38,6 +46,7 @@ export class SignInComponent implements OnInit {
       payload.subscribe(
         ({ access_token }: any) => {
           console.log('NEW TOKEN', access_token);
+          this.messageService.displayMessage('Signed In ✓');
           this.userService.setAuthToken(access_token);
           this.userService.setIsAuthenticated(true);
           this.router.navigate(['lists']);
@@ -45,7 +54,10 @@ export class SignInComponent implements OnInit {
         (error: any) => {
           if (error.status === 401) {
             console.error('invalid user information');
+            this.messageService.displayMessage('Incorrect User Information ✗');
+            return;
           }
+          this.messageService.displayMessage('Invalid Requst User Not Found');
         }
       );
     }
