@@ -5,8 +5,8 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  isAuthenticated: boolean = true;
-  isAuthenticated$: Observable<boolean> = of(true);
+  isAuthenticated: boolean = false;
+  isAuthenticated$: Observable<boolean> = of(false);
   token: string | null = null;
   constructor() {}
 
