@@ -5,7 +5,12 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { UserApiService } from 'src/app/services/user-api.service';
@@ -20,16 +25,23 @@ export class SignInComponent implements OnInit {
   @ViewChild('username') inputElement: ElementRef;
 
   constructor(
+    private fb: FormBuilder,
     @Inject(MessageService) private messageService: MessageService,
     private router: Router,
     private userService: UserService,
     private userApi: UserApiService
   ) {}
 
-  signInForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+  signInForm = this.fb.group({
+    username: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
+  isValid: boolean;
+  message: string;
+  ngAfterContentChecked() {
+    this.isValid = this.signInForm.status === 'VALID';
+    this.message = this.isValid ? 'Valid length' : 'Too Short';
+  }
   ngOnInit(): void {
     if (this.userService.isAuthenticated) {
       this.router.navigate(['lists']);
