@@ -1,6 +1,7 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { UserApiService } from 'src/app/services/user-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,10 @@ import { UserApiService } from 'src/app/services/user-api.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(@Inject(UserApiService) private userApi: UserApiService) {}
+  constructor(
+    @Inject(Router) private router: Router,
+    @Inject(UserApiService) private userApi: UserApiService
+  ) {}
 
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -22,5 +26,6 @@ export class RegisterComponent implements OnInit {
     this.userApi
       .registerUser(createUserDto)
       .subscribe(() => console.log('user registered'));
+    this.router.navigate(['']);
   }
 }
