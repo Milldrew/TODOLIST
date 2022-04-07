@@ -12,6 +12,7 @@ import { MenuComponent } from './view-todolist/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './auth/register/register.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
     MenuComponent,
     RegisterComponent,
     SignInComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,
