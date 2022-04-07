@@ -1,5 +1,5 @@
 make sure database query errors are handled
 make sure that the appropriate error response is given to the user
 validate user inputs for registration and sign in
-When the user is signed out redirect user to sign in
+✓ When the user is signed out redirect user to sign in
 
