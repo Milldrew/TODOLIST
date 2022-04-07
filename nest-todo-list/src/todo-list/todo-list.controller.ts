@@ -1,7 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { TodoListService } from './todo-list.service';
 import { CreateTodoListDto } from './dto/create-todo-list.dto';
 import { UpdateTodoListDto } from './dto/update-todo-list.dto';
+import { JwtAuthGuardService } from 'src/auth/jwt-auth-guard/jwt-auth-guard.service';
 
 @Controller('todo-list')
 export class TodoListController {
@@ -12,9 +23,11 @@ export class TodoListController {
     return this.todoListService.create(createTodoListDto);
   }
 
+  @UseGuards(JwtAuthGuardService)
   @Get()
-  findAll() {
-    return this.todoListService.findAll();
+  findAll(@Request() req) {
+    return this.todoListService.findAll(req.user);
+    console.log(req.user);
   }
 
   @Get(':id')
@@ -23,7 +36,10 @@ export class TodoListController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTodoListDto: UpdateTodoListDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateTodoListDto: UpdateTodoListDto,
+  ) {
     return this.todoListService.update(+id, updateTodoListDto);
   }
 

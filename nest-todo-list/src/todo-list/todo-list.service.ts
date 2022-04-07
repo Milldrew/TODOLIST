@@ -17,8 +17,13 @@ export class TodoListService {
     return this.todoListRepo.save(todoList);
   }
 
-  findAll() {
-    return this.todoListRepo.find();
+  findAll(user: any) {
+    const id: any = user['userId'];
+    console.table(user);
+    console.table({ id });
+    return this.todoListRepo.findBy({
+      authorId: id,
+    });
   }
 
   async findOne(id: number) {
