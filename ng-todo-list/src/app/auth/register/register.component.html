@@ -10,5 +10,5 @@
     <input type="password" formControlName="password" />
   </div>
   <span> <a routerLink="/">Sign In</a> instead.</span>
-  <button type="submit">Register</button>
+  <button [disabled]="!isValid" type="submit">Register</button>
 </form>
