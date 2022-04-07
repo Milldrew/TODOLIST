@@ -18,7 +18,14 @@ export class AppComponent {
     this.userService.setAuthToken(null);
     this.router.navigate(['']);
   }
+  ngAfterContentChecked() {
+    this.userService.isAuthenticated$.subscribe(
+      (value) => (this.isAuthenticated = value)
+    );
+  }
   ngOnInit() {
-    this.isAuthenticated = this.userService.isAuthenticated;
+    this.userService.isAuthenticated$.subscribe(
+      (value) => (this.isAuthenticated = value)
+    );
   }
 }
