@@ -3,12 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todolist } from '../models/todolist';
 import { TodolistsStoreService } from './todolists-store.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
+
+  getHttpOptions() {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.userService.token || 'NO TOKEN',
+      }),
+    };
+    return httpOptions;
+  }
 
   todolistUrl = `http://192.168.0.143:3000/todo-list`;
 
@@ -17,7 +28,8 @@ export class TodoListApiService {
     return this.http.post(this.todolistUrl, createTodolistDto);
   }
   getLists(): Observable<Todolist[]> {
-    return this.http.get<Todolist[]>(this.todolistUrl);
+    console.log('TOKEN', this.userService.token);
+    return this.http.get<Todolist[]>(this.todolistUrl, this.getHttpOptions());
   }
 
   updateList(todolist: Todolist) {

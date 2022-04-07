@@ -11,7 +11,8 @@ export class UserService {
   constructor() {}
 
   setAuthToken(token: string | null) {
-    this.token = token;
+    let prefix = 'Bearer ';
+    this.token = prefix + token;
     return this.token;
   }
   setIsAuthenticated(boolean: boolean): boolean {
