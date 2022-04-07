@@ -6,7 +6,7 @@ h1 {
 div {
   margin: 8px 0px;
   display: grid;
-  grid-template-columns: 10vw 15vw;
+  grid-template-columns: 40% 65%;
 }
 label {
   display: flex;
