@@ -33,3 +33,14 @@ a {
 .password-div {
   margin-bottom: 20px;
 }
+.validate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 8px 4px;
+  color: #f22;
+  background-color: #ffffff99;
+}

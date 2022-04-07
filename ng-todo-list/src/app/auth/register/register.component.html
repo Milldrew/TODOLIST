@@ -9,6 +9,9 @@
     <label>Password: </label>
     <input type="password" formControlName="password" />
   </div>
+  <div class="validate">
+    {{ message }}
+  </div>
   <span> <a routerLink="/">Sign In</a> instead.</span>
   <button [disabled]="!isValid" type="submit">Register</button>
 </form>
