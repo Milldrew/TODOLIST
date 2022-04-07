@@ -9,7 +9,7 @@ export class UserService {
   token: string | null = null;
   constructor() {}
 
-  setAuthToken(token: string): string {
+  setAuthToken(token: string | null) {
     this.token = token;
     return this.token;
   }

@@ -36,3 +36,16 @@ app-todolist {
 .add-todo:active {
   background-color: var(--active);
 }
+.sign-out {
+  position: fixed;
+  top: 1vw;
+  right: 3vw;
+  cursor: pointer;
+}
+
+.sign-out:hover {
+  color: var(--secondary-color);
+}
+.sign-out:active {
+  color: var(--active);
+}
