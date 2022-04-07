@@ -6,17 +6,23 @@ import {
   Patch,
   Param,
   Delete,
+  Catch,
+  UseFilters,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { QueryFailedError } from 'typeorm';
+import { GlobalExceptionFilter } from './exception.filter';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
+  @UseFilters(new GlobalExceptionFilter())
   create(@Body() createUserDto: CreateUserDto) {
+    console.log('hello');
     return this.userService.create(createUserDto);
   }
 
