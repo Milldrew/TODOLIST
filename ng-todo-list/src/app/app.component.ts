@@ -22,6 +22,7 @@ export class AppComponent {
     this.userService.isAuthenticated$.subscribe(
       (value) => (this.isAuthenticated = value)
     );
+    console.table({ isAuth: this.isAuthenticated });
   }
   ngOnInit() {
     this.userService.isAuthenticated$.subscribe(
