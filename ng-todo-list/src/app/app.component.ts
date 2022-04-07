@@ -33,5 +33,8 @@ export class AppComponent {
     this.userService.isAuthenticated$.subscribe(
       (value) => (this.isAuthenticated = value)
     );
+    if (!this.isAuthenticated) {
+      this.router.navigate(['']);
+    }
   }
 }
