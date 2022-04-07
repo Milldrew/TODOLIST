@@ -27,9 +27,8 @@ export class TodoListController {
 
   @UseGuards(JwtAuthGuardService)
   @Get()
-  findAll(@Request() req) {
+  findAll(@Request() req: any) {
     return this.todoListService.findAll(req.user);
-    console.log(req.user);
   }
 
   @UseGuards(JwtAuthGuardService)
@@ -45,6 +44,7 @@ export class TodoListController {
     @Param('id') id: string,
     @Body() updateTodoListDto: UpdateTodoListDto,
   ) {
+    console.log('UPDATE HERE');
     const authorId = req.user['userId'];
 
     return this.todoListService.update(+id, updateTodoListDto, authorId);

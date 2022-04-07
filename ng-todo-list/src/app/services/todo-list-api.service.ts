@@ -25,7 +25,11 @@ export class TodoListApiService {
 
   createList(createTodolistDto: any): Observable<Object> {
     console.log('hi');
-    return this.http.post(this.todolistUrl, createTodolistDto);
+    return this.http.post(
+      this.todolistUrl,
+      createTodolistDto,
+      this.getHttpOptions()
+    );
   }
   getLists(): Observable<Todolist[]> {
     console.log('TOKEN', this.userService.token);
@@ -35,14 +39,18 @@ export class TodoListApiService {
   updateList(todolist: Todolist) {
     const { id, ...updateTodolistDto } = todolist;
     return this.http
-      .patch(`${this.todolistUrl}/${id}`, updateTodolistDto)
+      .patch(
+        `${this.todolistUrl}/${id}`,
+        updateTodolistDto,
+        this.getHttpOptions()
+      )
       .subscribe((value) => console.log(value));
   }
 
   deleteList(id: any): any {
     console.log('HELLO');
     return this.http
-      .delete(`${this.todolistUrl}/${id}`)
+      .delete(`${this.todolistUrl}/${id}`, this.getHttpOptions())
       .subscribe((value) => console.log(value));
   }
 }

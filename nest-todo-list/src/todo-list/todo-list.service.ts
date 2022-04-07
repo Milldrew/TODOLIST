@@ -22,8 +22,7 @@ export class TodoListService {
 
   findAll(user: any) {
     const id: any = user['userId'];
-    console.table(user);
-    console.table({ id });
+    console.log('FIND ALL LISTS SERVICE');
     return this.todoListRepo.findBy({
       authorId: id,
     });

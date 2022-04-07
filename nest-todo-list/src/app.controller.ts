@@ -21,7 +21,6 @@ export class AppController {
   @UseGuards(JwtAuthGuardService)
   @Get()
   getHello(@Request() req: any): string {
-    console.log(req.user);
     return req.user;
   }
 }

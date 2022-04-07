@@ -37,6 +37,7 @@ export class SignInComponent implements OnInit {
     if (payload) {
       payload.subscribe(
         ({ access_token }: any) => {
+          console.log('NEW TOKEN', access_token);
           this.userService.setAuthToken(access_token);
           this.userService.setIsAuthenticated(true);
           this.router.navigate(['lists']);

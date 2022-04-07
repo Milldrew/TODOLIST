@@ -29,13 +29,6 @@ export class TodolistsStoreService {
     return this.todolists;
   }
   addTodoList() {
-    this.todolists.push({
-      authorId: 1,
-      id: Math.floor(Math.random() * 1000),
-      name: 'New Todo List',
-      todos: [{ name: 'new todo', isFinished: false }],
-    });
-
     return of(this.todolists);
   }
   getTodolistById(id: number) {

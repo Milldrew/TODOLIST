@@ -24,7 +24,6 @@ export class TodolistsComponent implements OnInit {
   addTodoList() {
     this.listApi
       .createList({
-        authorId: 1,
         name: 'New List',
         todos: [{ name: 'New Todo', isFinished: false }],
       })
