@@ -1,0 +1,2 @@
+curl -d '{"username": "654321", "password": "654321"}' -H "Content-Type: application/json" 'https://todolist-service-epr45towtq-uc.a.run.app/auth/login'
+

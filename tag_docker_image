@@ -1,0 +1,5 @@
+ORIGINAL_NAME=$1
+VERSION=$2
+echo $ORIGINAL_NAME
+echo $VERSION
+docker tag $ORIGINAL_NAME 'gcr.io/'$PROJECT_ID'/todolist:'$VERSION
