@@ -1,3 +1,4 @@
 *node_modules*
 *.env
 *.swp
+connect_clou_sql

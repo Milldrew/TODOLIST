@@ -1,3 +1,4 @@
+import connection from './typeorm-connection';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -9,16 +10,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TodoListModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'pass123',
-      database: 'postgres',
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(connection),
     UserModule,
     AuthModule,
   ],
