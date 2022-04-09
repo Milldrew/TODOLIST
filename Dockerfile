@@ -9,8 +9,15 @@ WORKDIR /usr/src/app
 # install dependencies
 RUN yarn --frozen-lockfile
 
-COPY ./nest-todo-list .
+COPY ./nest-todo-list ./nest-todo-list
+COPY ./ng-todo-list ./ng-todo-list
 
+
+WORKDIR /usr/src/app/ng-todo-list
+RUN npm install
+RUN npm build
+
+WORKDIR /usr/src/app/nest-todo-list
 RUN yarn install
 RUN yarn build
 
@@ -36,4 +43,4 @@ COPY --from=BUILD_IMAGE /usr/src/app/node_modules /home/node/app/node_modules
 
 EXPOSE 3000
 ENTRYPOINT ["node"]
-CMD ["/home/node/app/dist/main.js"]
+CMD ["/home/node/app/nest-todo-list/dist/main.js"]
