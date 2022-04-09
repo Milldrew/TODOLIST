@@ -17,9 +17,4 @@ export class AppController {
   async login(@Request() req: any) {
     return this.authService.login(req.user);
   }
-
-  @Get()
-  getHello(@Request() req: any): string {
-    return req.user;
-  }
 }
