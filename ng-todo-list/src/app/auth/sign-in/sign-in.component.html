@@ -9,9 +9,11 @@
     <label>Password: </label>
     <input type="password" formControlName="password" />
   </div>
-  <div class="validate">
+  <div *ngIf="!isValid" class="validate">
     {{ message }}
   </div>
   <span> <a routerLink="/register">Register</a> to sign in. </span>
   <button [disabled]="!isValid" type="submit">Sign In</button>
 </form>
+{{ nameIsValid }}
+{{ passwordIsValid }}

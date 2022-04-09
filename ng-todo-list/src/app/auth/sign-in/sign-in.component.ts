@@ -36,11 +36,25 @@ export class SignInComponent implements OnInit {
     username: ['', [Validators.required, Validators.minLength(6)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+  nameIsValid: boolean | null;
+  passwordIsValid: boolean | null;
   isValid: boolean;
   message: string;
   ngAfterContentChecked() {
+    let passwordStatus = this.signInForm.get('password');
+    if (passwordStatus) this.passwordIsValid = passwordStatus.valid;
+    let nameStatus = this.signInForm.get('username');
+    if (nameStatus) this.nameIsValid = nameStatus.valid;
     this.isValid = this.signInForm.status === 'VALID';
-    this.message = this.isValid ? 'Valid length' : 'Too Short';
+    if (!this.nameIsValid && !this.passwordIsValid) {
+      this.message = 'The username and passowrd are too short';
+    } else if (this.nameIsValid && this.passwordIsValid) {
+      this.message = '';
+    } else if (!this.passwordIsValid) {
+      this.message = ' the password is too short';
+    } else {
+      this.message = 'The username is too short';
+    }
   }
   ngOnInit(): void {
     if (this.userService.isAuthenticated) {
