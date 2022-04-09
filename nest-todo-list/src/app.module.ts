@@ -12,7 +12,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: '/Users/andrewmiller/TODOLIST/docs/',
+      rootPath: join(__dirname, '..', '..', 'client'),
     }),
     TodoListModule,
     TypeOrmModule.forRoot(connection),
