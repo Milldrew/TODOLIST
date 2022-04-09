@@ -17,9 +17,27 @@ export class RegisterComponent implements OnInit {
   ) {}
   isValid: boolean;
   message: string;
+  usernameIsValid: boolean | null;
+  passwordIsValid: boolean | null;
   ngAfterContentChecked() {
+    let username = this.registerForm.get('username');
+    if (username) {
+      this.usernameIsValid = username.valid;
+    }
+    let password = this.registerForm.get('password');
+    if (password) {
+      this.passwordIsValid = password.valid;
+    }
     this.isValid = this.registerForm.status === 'VALID';
-    this.message = this.isValid ? 'Valid length' : 'Too Short';
+    if (!this.usernameIsValid && !this.passwordIsValid) {
+      this.message = 'The username and passowrd are too short';
+    } else if (this.usernameIsValid && this.passwordIsValid) {
+      this.message = '';
+    } else if (!this.passwordIsValid) {
+      this.message = ' the password is too short';
+    } else {
+      this.message = 'The username is too short';
+    }
   }
 
   registerForm = new FormGroup({
