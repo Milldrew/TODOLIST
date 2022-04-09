@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     }
     this.isValid = this.registerForm.status === 'VALID';
     if (!this.usernameIsValid && !this.passwordIsValid) {
-      this.message = 'The username and passowrd are too short';
+      this.message = 'The username and password are too short';
     } else if (this.usernameIsValid && this.passwordIsValid) {
       this.message = '';
     } else if (!this.passwordIsValid) {
