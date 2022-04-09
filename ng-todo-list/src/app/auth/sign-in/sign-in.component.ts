@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
     if (nameStatus) this.nameIsValid = nameStatus.valid;
     this.isValid = this.signInForm.status === 'VALID';
     if (!this.nameIsValid && !this.passwordIsValid) {
-      this.message = 'The username and passowrd are too short';
+      this.message = 'The username and password are too short';
     } else if (this.nameIsValid && this.passwordIsValid) {
       this.message = '';
     } else if (!this.passwordIsValid) {
