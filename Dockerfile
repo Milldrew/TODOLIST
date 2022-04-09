@@ -44,4 +44,5 @@ COPY --from=BUILD_IMAGE /usr/src/app/nest-todo-list/node_modules /home/node/app/
 
 EXPOSE 3000
 ENTRYPOINT ["node"]
+
 CMD ["/home/node/app/nest-todo-list/dist/main.js"]
