@@ -18,7 +18,6 @@ export class AppController {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(JwtAuthGuardService)
   @Get()
   getHello(@Request() req: any): string {
     return req.user;
