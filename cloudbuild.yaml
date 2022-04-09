@@ -1,4 +1,4 @@
- steps:
+steps:
 #Build the container image
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/premium-trainer-341420/todo_list:$COMMIT_SHA', '.']
