@@ -2,6 +2,7 @@
   #editName
   autocapitalize="none"
   *ngIf="beingEdited"
+  (blur)="submitEdit()"
   (keyup.enter)="submitEdit()"
   type="text"
   [(ngModel)]="todolistEdit"
