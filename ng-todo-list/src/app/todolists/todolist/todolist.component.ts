@@ -43,6 +43,7 @@ export class TodolistComponent implements OnInit {
       this.listNameInput.nativeElement.focus();
     }, 100);
     event.stopPropagation();
+    this.todolistEdit = '';
     this.beingEdited = true;
     this.emitBeingEdited.emit(this.beingEdited);
   }
