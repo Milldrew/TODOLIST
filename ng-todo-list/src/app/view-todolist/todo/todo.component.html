@@ -5,6 +5,7 @@
   #editName
   *ngIf="beingEdited"
   autocapitalize="none"
+  (blur)="submitEdit()"
   (keyup.enter)="submitEdit()"
   type="text"
   [(ngModel)]="todoEdit"
