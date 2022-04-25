@@ -3,7 +3,7 @@
 <form (ngSubmit)="signIn()" [formGroup]="signInForm">
   <div>
     <label>Username:</label>
-    <input #username formControlName="username" />
+    <input inputmode="text" #username formControlName="username" />
   </div>
   <div class="password-div">
     <label>Password: </label>
