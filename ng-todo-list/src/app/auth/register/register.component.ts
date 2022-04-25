@@ -60,7 +60,10 @@ export class RegisterComponent implements OnInit {
         this.messageService.displayMessage('Registered User');
         this.router.navigate(['']);
       },
-      () => this.messageService.displayMessage('Failed to Register')
+      (error) => {
+        console.log(error);
+        this.messageService.displayMessage('Failed to Register');
+      }
     );
   }
 }
