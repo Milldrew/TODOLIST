@@ -41,6 +41,7 @@ export class TodoComponent implements OnInit {
   }
   startEdit() {
     this.beingEdited = true;
+    this.todoEdit = '';
     setTimeout(() => {
       this.editNameElement.nativeElement.focus();
     }, 10);
