@@ -1,7 +1,8 @@
 <input
   #editName
+  autocapitalize="none"
   *ngIf="beingEdited"
-  (keypress.enter)="submitEdit()"
+  (keyup.enter)="submitEdit()"
   type="text"
   [(ngModel)]="todolistEdit"
 />
