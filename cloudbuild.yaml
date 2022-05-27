@@ -13,7 +13,7 @@ steps:
   - 'deploy'
   - 'todo-list-2'
   - '--image'
-  - 'gcr.io/premium-trainer-341420/todo_list:$COMMIT_SHA'
+  - 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA'
   - '--region'
   - 'us-central1'
 images:
