@@ -1,11 +1,11 @@
-#todo-list-351520
+#todo-list-351520 $COMMIT_SHA
 steps:
 #Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/todo-list-351520/todo_list:1.0.0', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA']
+  args: ['push', 'gcr.io/todo-list-351520/todo_list:1.0.0']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
