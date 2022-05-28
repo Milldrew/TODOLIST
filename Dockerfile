@@ -21,7 +21,7 @@ WORKDIR /usr/src/app/nest-todo-list
 RUN yarn install
 RUN yarn build
 
-
+RUN npm prune --production
 
 FROM node:16-alpine3.11
 
