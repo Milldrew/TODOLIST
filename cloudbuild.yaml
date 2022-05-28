@@ -12,7 +12,7 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'todo-list-2'
+  - 'todolist'
   - '--image'
   - 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA'
   - '--region'
