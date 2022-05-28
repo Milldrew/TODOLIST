@@ -22,7 +22,6 @@ RUN yarn install
 RUN yarn build
 
 
-RUN /usr/local/bin/node-prune
 
 FROM node:16-alpine3.11
 
