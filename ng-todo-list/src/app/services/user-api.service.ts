@@ -6,8 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class UserApiService {
   constructor(private http: HttpClient) {}
-  loginProdUrl = `https://todolist-service-epr45towtq-uc.a.run.app/auth/login`;
-  userProdUrl = `https://todolist-service-epr45towtq-uc.a.run.app/user`;
+  //https://todolist-efqlyoo5ia-uc.a.run.app//
+  loginProdUrl = `https://todolist-efqlyoo5ia-uc.a.run.app/auth/login`;
+  userProdUrl = `https://todolist-efqlyoo5ia-uc.a.run.app/user`;
   userUrl = `http://192.168.0.143:3000/user`;
   loginUrl = `http://192.168.0.143:3000/auth/login`;
   registerUser(createUserDto: any) {

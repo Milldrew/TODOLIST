@@ -10,7 +10,8 @@ import { UserService } from './user.service';
 })
 export class TodoListApiService {
   todolistUrl = `http://192.168.0.143:3000/todo-list`;
-  todolistProdUrl = `https://todolist-service-epr45towtq-uc.a.run.app/todo-list`;
+  //https://todolist-efqlyoo5ia-uc.a.run.app//
+  todolistProdUrl = `https://todolist-efqlyoo5ia-uc.a.run.app/todo-list`;
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
