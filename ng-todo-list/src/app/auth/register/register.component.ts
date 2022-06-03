@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { UserApiService } from 'src/app/services/user-api.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class RegisterComponent implements OnInit {
   constructor(
+    private userService: UserService,
     public messageService: MessageService,
     @Inject(Router) private router: Router,
     @Inject(UserApiService) private userApi: UserApiService
@@ -53,12 +55,23 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   register() {
+    let signIn = this.userApi.signIn;
     let createUserDto = this.registerForm.value;
     console.log({ createUserDto });
     this.userApi.registerUser(createUserDto).subscribe(
       () => {
         this.messageService.displayMessage('Registered User');
-        this.router.navigate(['']);
+        if (createUserDto && createUserDto.username && createUserDto.password) {
+          signIn(createUserDto.username, createUserDto.password).subscribe(
+            ({ access_token }: any) => {
+              if (access_token) {
+                this.messageService.displayMessage('Signed In');
+                this.userService.setAuthToken(access_token);
+              }
+            }
+          );
+          this.router.navigate(['']);
+        }
       },
       (error) => {
         console.log(error);
