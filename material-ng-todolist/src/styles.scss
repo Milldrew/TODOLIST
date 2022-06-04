@@ -39,3 +39,4 @@ $material-ng-todolist-theme: mat.define-dark-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($material-ng-todolist-theme);
+@include theme-extension.theme($material-ng-todolist-theme);
