@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './auth/register/register.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { DisplayListsComponent } from './display-lists/display-lists.component';
 import { ViewListComponent } from './display-lists/view-list/view-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'todo-lists', pathMatch: 'full' },
-  /*
-  { path: 'login', component: LoginComponent },
+  { path: 'sign-in', component: SignInComponent },
   { path: 'register', component: RegisterComponent },
-  */
   { path: 'todo-lists', component: DisplayListsComponent },
   { path: 'todo-lists/todo-list/:id', component: ViewListComponent },
   { path: '**', redirectTo: 'register' },
