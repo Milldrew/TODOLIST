@@ -11,7 +11,11 @@ export class TodoListHttpService {
     {
       id: 1,
       name: 'name',
-      todos: [{ name: 'work', isFinished: false }],
+      todos: [
+        { name: 'work', isFinished: false },
+        { name: 'work', isFinished: false },
+        { name: 'work', isFinished: false },
+      ],
     },
     {
       id: 2,
