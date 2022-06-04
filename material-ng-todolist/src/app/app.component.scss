@@ -11,3 +11,9 @@ div {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+}
