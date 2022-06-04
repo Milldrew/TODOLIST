@@ -14,5 +14,16 @@
     </mat-form-field>
   </form>
   <mat-hint>Valid Email</mat-hint>
-  <mat-error></mat-error>
+  <mat-error
+    *ngIf="
+      emailFormControl.hasError('email') &&
+      !emailFormControl.hasError('required')
+    "
+  >
+    Please enter a valid email address.
+  </mat-error>
+  <mat-error *ngIf="emailFormControl.hasError('required')"
+    >Email is
+    <strong>required</strong>
+  </mat-error>
 </mat-card>
