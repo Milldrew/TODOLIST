@@ -40,3 +40,15 @@ $material-ng-todolist-theme: mat.define-dark-theme(
 // that you are using.
 @include mat.all-component-themes($material-ng-todolist-theme);
 @include theme-extension.theme($material-ng-todolist-theme);
+html,
+body {
+  //changed for scroll functionality to work
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+h1 {
+  width: 100%;
+  text-align: center;
+}

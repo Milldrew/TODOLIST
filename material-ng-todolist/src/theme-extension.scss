@@ -16,6 +16,10 @@
     background-color: mat.get-color-from-palette($primary-palette, 500);
     color: mat.get-color-from-palette($accent-palette, 200);
   }
+  .inheritBackground {
+    background-color: map.get($background, "background");
+    color: map.get($foreground, "base");
+  }
   .inherit-background {
     background-color: map.get($background, "background");
     color: map.get($foreground, "base");
