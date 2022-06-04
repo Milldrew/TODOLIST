@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { TodoList } from '../core/models/todo-list';
 import { TodoListHttpService } from '../core/services/todo-list-http.service';
 
@@ -8,6 +8,7 @@ import { TodoListHttpService } from '../core/services/todo-list-http.service';
   styleUrls: ['./display-lists.component.scss'],
 })
 export class DisplayListsComponent implements OnInit {
+  @HostBinding('[class.inheritBackground]') inheritsBackgrou = true;
   constructor(private readonly todoListHttp: TodoListHttpService) {}
 
   todoLists: TodoList[] = this.todoListHttp.mockTodolists;
