@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   */
   { path: 'todo-lists', component: DisplayListsComponent },
-  { path: 'todo-list/:code', component: ViewListComponent },
+  { path: 'todo-lists/todo-list/:code', component: ViewListComponent },
   { path: '**', redirectTo: 'register' },
 ];
 @NgModule({

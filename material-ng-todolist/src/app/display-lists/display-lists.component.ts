@@ -15,6 +15,8 @@ export class DisplayListsComponent implements OnInit {
     this._elementRef.nativeElement.classList.add('inherit-background');
   }
 
+  todoListRoute = 'todo-list/';
+
   todoLists: TodoList[] = this.todoListHttp.mockTodolists;
 
   ngOnInit(): void {}
