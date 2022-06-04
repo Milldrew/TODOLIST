@@ -27,11 +27,12 @@ export class AuthErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  signInFormControl = new FormControl('', [
+  emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
+  matcher = new AuthErrorStateMatcher();
   constructor() {}
 
   ngOnInit(): void {}

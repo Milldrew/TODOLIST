@@ -2,4 +2,17 @@
   <mat-card-header>
     <mat-card-title class="form-title">Sign In</mat-card-title>
   </mat-card-header>
+  <form>
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        [formControl]="emailFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="Ex. john@example.com"
+      />
+    </mat-form-field>
+  </form>
+  <mat-hint>Valid Email</mat-hint>
+  <mat-error></mat-error>
 </mat-card>
