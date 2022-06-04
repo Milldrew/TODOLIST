@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +14,7 @@ import { ViewListComponent } from './display-lists/view-list/view-list.component
 @NgModule({
   declarations: [AppComponent, DisplayListsComponent, ViewListComponent],
   imports: [
+    MatListModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
