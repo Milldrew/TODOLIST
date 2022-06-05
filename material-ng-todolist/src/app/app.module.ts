@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DisplayListsComponent } from './display-lists/display-lists.component';
 import { ViewListComponent } from './display-lists/view-list/view-list.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, DisplayListsComponent, ViewListComponent],
@@ -22,6 +23,7 @@ import { ViewListComponent } from './display-lists/view-list/view-list.component
     MatCardModule,
     BrowserModule,
     AppRoutingModule,
+    AuthModule,
     BrowserAnimationsModule,
   ],
   providers: [],
