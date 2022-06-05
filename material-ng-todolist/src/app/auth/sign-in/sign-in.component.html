@@ -31,12 +31,14 @@
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input
-        type="password"
+        [type]="togglePassword()"
         matInput
         [formControl]="passwordFormControl"
         [errorStateMatcher]="matcher"
-        placeholder="Ex. john@example.com"
       />
+      <button (click)="togglePassword()" mat-icon-button matSuffix>
+        <mat-icon>visibility_off</mat-icon>
+      </button>
     </mat-form-field>
     <div class="hints">
       <mat-hint *ngIf="passwordFormControl.valid">Valid Password</mat-hint>

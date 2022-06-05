@@ -38,6 +38,11 @@ export class SignInComponent implements OnInit {
 
   matcher = new AuthErrorStateMatcher();
   constructor() {}
+  passwordToggleValue: 'text' | 'password' = 'text';
+
+  togglePassword(): 'text' | 'password' {
+    return 'text';
+  }
 
   ngOnInit(): void {}
 }
