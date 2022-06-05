@@ -1,4 +1,7 @@
 :host {
+  margin: {
+    top: 20px;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +13,10 @@ mat-card {
   max-width: 70%;
   min-width: 50%;
   max-height: 80%;
+  padding: {
+    top: 40px;
+    bottom: 80px;
+  }
 }
 form {
   display: flex;
@@ -28,11 +35,11 @@ mat-card-title {
 }
 
 mat-form-field {
-  width: 80%;
+  width: 70%;
   margin: 0px;
 }
 .hints {
-  width: 80%;
+  width: 70%;
   margin: {
     bottom: 20px;
   }
