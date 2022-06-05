@@ -29,30 +29,27 @@
       </mat-error>
     </div>
     <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
+      <mat-label>Password</mat-label>
       <input
-        type="email"
+        type="password"
         matInput
-        [formControl]="emailFormControl"
+        [formControl]="passwordFormControl"
         [errorStateMatcher]="matcher"
         placeholder="Ex. john@example.com"
       />
     </mat-form-field>
     <div class="hints">
-      <mat-hint *ngIf="emailFormControl.valid">Valid Email</mat-hint>
-      <mat-error
-        *ngIf="
-          emailFormControl.hasError('email') &&
-          !emailFormControl.hasError('required')
-        "
+      <mat-hint *ngIf="passwordFormControl.valid">Valid Password</mat-hint>
+
+      <mat-error *ngIf="passwordFormControl.hasError('minLength')">
+        >The password must be 6 characters long.</mat-error
       >
-        Please enter a valid email address.
-      </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')"
-        >Email is
+      <mat-error *ngIf="passwordFormControl.hasError('required')"
+        >Password is
         <strong>required</strong>
       </mat-error>
     </div>
     <button mat-raised-button color="primary">Sign In</button>
   </form>
 </mat-card>
+{{ passwordFormControl.errors | json }}

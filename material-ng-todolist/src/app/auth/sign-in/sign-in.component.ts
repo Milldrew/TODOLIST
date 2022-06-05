@@ -31,6 +31,10 @@ export class SignInComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
 
   matcher = new AuthErrorStateMatcher();
   constructor() {}
