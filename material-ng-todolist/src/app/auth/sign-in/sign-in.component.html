@@ -41,8 +41,13 @@
     <div class="hints">
       <mat-hint *ngIf="passwordFormControl.valid">Valid Password</mat-hint>
 
-      <mat-error *ngIf="passwordFormControl.hasError('minLength')">
-        >The password must be 6 characters long.</mat-error
+      <mat-error
+        *ngIf="
+          !passwordFormControl.valid &&
+          !passwordFormControl.hasError('required')
+        "
+      >
+        The password must be 6 characters long.</mat-error
       >
       <mat-error *ngIf="passwordFormControl.hasError('required')"
         >Password is
@@ -52,4 +57,6 @@
     <button mat-raised-button color="primary">Sign In</button>
   </form>
 </mat-card>
+errors
 {{ passwordFormControl.errors | json }}
+validator
