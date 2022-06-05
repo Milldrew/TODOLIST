@@ -31,13 +31,21 @@
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input
-        [type]="togglePassword()"
+        [type]="passwordToggleValue"
         matInput
         [formControl]="passwordFormControl"
         [errorStateMatcher]="matcher"
       />
-      <button (click)="togglePassword()" mat-icon-button matSuffix>
-        <mat-icon>visibility_off</mat-icon>
+      <button
+        (click)="togglePassword()"
+        type="button"
+        mat-icon-button
+        matSuffix
+      >
+        <mat-icon *ngIf="passwordToggleValue === 'text'">visibility</mat-icon>
+        <mat-icon *ngIf="passwordToggleValue === 'password'"
+          >visibility_off</mat-icon
+        >
       </button>
     </mat-form-field>
     <div class="hints">

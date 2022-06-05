@@ -40,8 +40,11 @@ export class SignInComponent implements OnInit {
   constructor() {}
   passwordToggleValue: 'text' | 'password' = 'text';
 
-  togglePassword(): 'text' | 'password' {
-    return 'text';
+  togglePassword() {
+    console.log(this.passwordToggleValue);
+    this.passwordToggleValue === 'text'
+      ? (this.passwordToggleValue = 'password')
+      : (this.passwordToggleValue = 'text');
   }
 
   ngOnInit(): void {}
