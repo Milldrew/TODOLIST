@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { SignInService } from '../services/sign-in.service';
 
 export class AuthErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -37,7 +39,10 @@ export class SignInComponent implements OnInit {
   ]);
 
   matcher = new AuthErrorStateMatcher();
-  constructor() {}
+  constructor(
+    public router: Router,
+    private readonly signInService: SignInService
+  ) {}
   passwordToggleValue: 'text' | 'password' = 'text';
 
   togglePassword() {
@@ -45,6 +50,16 @@ export class SignInComponent implements OnInit {
     this.passwordToggleValue === 'text'
       ? (this.passwordToggleValue = 'password')
       : (this.passwordToggleValue = 'text');
+  }
+
+  signIn() {
+    this.signInService.signIn(
+      {
+        username: this.emailFormControl.value,
+        password: this.passwordFormControl.value,
+      },
+      this.router
+    );
   }
 
   ngOnInit(): void {}
