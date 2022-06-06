@@ -10,6 +10,6 @@ export class SignInService {
   constructor(private readonly http: HttpClient) {}
 
   signIn(signInDto: SignInDto) {
-    this.http.post(`${environment.baseUrl}/auth/login`, signInDto);
+    return this.http.post(`${environment.baseUrl}/auth/login`, signInDto);
   }
 }
