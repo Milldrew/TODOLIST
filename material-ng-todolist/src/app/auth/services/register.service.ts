@@ -27,16 +27,7 @@ export class RegisterService {
           username: payload.username,
           password: payload.password,
         };
-        this.signInService.signIn(signInDto).subscribe(
-          (payload) => {
-            this.userService.setUser(payload);
-            console.log('before navigation');
-            router.navigate(['todo-lists']);
-            console.log('after navigatio');
-          },
-          console.log,
-          console.log
-        );
+        this.signInService.signIn(signInDto, router);
       },
       console.error,
       console.log
