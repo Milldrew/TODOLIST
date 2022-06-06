@@ -5,6 +5,7 @@ import { RegisterDto } from '../models/register-dto';
 import { UserService } from 'src/app/core/services/user.service';
 import { SignInService } from './sign-in.service';
 import { User } from 'src/app/core/models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class RegisterService {
     private readonly signInService: SignInService
   ) {}
 
-  register(registerDto: RegisterDto) {
+  register(registerDto: RegisterDto, router: Router) {
     console.log({ registerDto });
     this.http.post<User>(`${environment.baseUrl}/user`, registerDto).subscribe(
       (payload: User) => {
@@ -29,6 +30,9 @@ export class RegisterService {
         this.signInService.signIn(signInDto).subscribe(
           (payload) => {
             this.userService.setUser(payload);
+            console.log('before navigation');
+            router.navigate(['todo-lists']);
+            console.log('after navigatio');
           },
           console.log,
           console.log
