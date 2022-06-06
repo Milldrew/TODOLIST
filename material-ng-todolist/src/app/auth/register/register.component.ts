@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { RegisterService } from '../services/register.service';
 
 export class AuthErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
   ]);
 
   matcher = new AuthErrorStateMatcher();
-  constructor() {}
+  constructor(private readonly register: RegisterService) {}
   passwordToggleValue: 'text' | 'password' = 'text';
 
   togglePassword() {
@@ -46,5 +47,11 @@ export class RegisterComponent implements OnInit {
       : (this.passwordToggleValue = 'text');
   }
 
+  registerUser() {
+    this.register.register({
+      username: this.emailFormControl.value,
+      password: this.passwordFormControl.value,
+    });
+  }
   ngOnInit(): void {}
 }
