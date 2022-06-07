@@ -22,7 +22,10 @@ export class SignInService {
       .subscribe((dataPayload: IncomingUser) => {
         let { access_token, ...payload } = dataPayload;
         console.log('before setUser');
-        this.userService.setUser({ accessToken: access_token, ...payload });
+        this.userService.setUser({
+          accessToken: 'Bearer ' + access_token,
+          ...payload,
+        });
         router.navigate(['todo-lists']);
       });
   }
