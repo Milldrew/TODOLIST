@@ -18,7 +18,7 @@ export class DisplayListsComponent implements OnInit {
 
   todoListRoute = 'todo-list/';
 
-  todoLists: TodoList[] = this.todoListHttp.mockTodolists;
+  todoLists: TodoList[] = this.todoListHttp.lists;
   newListsName: string | null = 'hi';
 
   addTodoList(name: string) {
