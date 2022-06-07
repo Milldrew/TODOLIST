@@ -32,34 +32,13 @@ export class TodoListHttpService {
     }
   }
 
-  mockTodolists: TodoList[] = [
-    {
-      id: 1,
-      name: 'name',
-      todos: [
-        { name: 'work', isFinished: false },
-        { name: 'work', isFinished: false },
-        { name: 'work', isFinished: false },
-      ],
-    },
-    {
-      id: 2,
-      name: '2name',
-      todos: [{ name: 'work', isFinished: false }],
-    },
-    {
-      id: 3,
-      name: '3name',
-      todos: [{ name: 'work', isFinished: false }],
-    },
-  ];
+  lists: TodoList[];
 
   addTodoList(name: string) {
     let createTodoListDto: CreateUpdateTodoListDto = {
       name,
       todos: [{ name: 'First Todo', isFinished: true }],
     };
-    this.mockTodolists.push(...this.mockTodolists);
     this.http
       .post(
         environment.baseUrl + '/todo-list',
@@ -71,7 +50,16 @@ export class TodoListHttpService {
 
   getAllTodos() {
     this.http
-      .get(environment.baseUrl + '/todo-list', this.getHttpOptions())
-      .subscribe(console.log, console.error, console.log);
+      .get<TodoList[]>(
+        environment.baseUrl + '/todo-list',
+        this.getHttpOptions()
+      )
+      .subscribe(
+        (listPayload: TodoList[]) => {
+          this.lists = listPayload;
+        },
+        console.error,
+        console.log
+      );
   }
 }

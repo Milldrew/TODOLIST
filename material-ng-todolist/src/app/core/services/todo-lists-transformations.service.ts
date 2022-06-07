@@ -12,7 +12,7 @@ export class TodoListsTransformationsService {
     console.log('get todo list');
     console.log(id);
     console.log(typeof id);
-    const result = this.todoListHttp.mockTodolists.find(
+    const result = this.todoListHttp.lists.find(
       (list: TodoList) => list.id === id
     );
     if (result) {
