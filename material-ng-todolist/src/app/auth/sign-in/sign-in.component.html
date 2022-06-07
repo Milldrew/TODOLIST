@@ -6,6 +6,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input
+        (keyup.enter)="signIn()"
         type="email"
         matInput
         [formControl]="emailFormControl"
@@ -31,6 +32,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input
+        (keyup.enter)="signIn()"
         [type]="passwordToggleValue"
         matInput
         [formControl]="passwordFormControl"
