@@ -28,4 +28,8 @@ export class TodoListHttpService {
       todos: [{ name: 'work', isFinished: false }],
     },
   ];
+
+  addTodoList(name: string) {
+    this.mockTodolists.push(...this.mockTodolists);
+  }
 }

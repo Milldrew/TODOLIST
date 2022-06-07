@@ -25,7 +25,7 @@ $material-ng-todolist-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$material-ng-todolist-theme: mat.define-dark-theme(
+$material-ng-todolist-theme: mat.define-light-theme(
   (
     color: (
       primary: $material-ng-todolist-primary,

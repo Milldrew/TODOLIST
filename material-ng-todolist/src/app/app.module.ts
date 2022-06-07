@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,10 +13,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DisplayListsComponent } from './display-lists/display-lists.component';
 import { ViewListComponent } from './display-lists/view-list/view-list.component';
 import { AuthModule } from './auth/auth.module';
+import { AddListOverlayComponent } from './display-lists/add-list-overlay/add-list-overlay.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [AppComponent, DisplayListsComponent, ViewListComponent],
+  declarations: [
+    AppComponent,
+    DisplayListsComponent,
+    ViewListComponent,
+    AddListOverlayComponent,
+  ],
   imports: [
+    FormsModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    OverlayModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatListModule,
     MatIconModule,
