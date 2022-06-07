@@ -15,7 +15,7 @@ export class TodoListHttpService {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: this.userService.userData.accessToken,
+          Authorization: this.userService.userData.acc?essToken,
         }),
       };
       console.table(httpOptions);
@@ -24,7 +24,7 @@ export class TodoListHttpService {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: 'no toke',
+          Authorization: 'no token',
         }),
       };
       console.table(httpOptions);
