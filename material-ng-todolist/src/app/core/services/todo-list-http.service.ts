@@ -71,7 +71,7 @@ export class TodoListHttpService {
 
   getAllTodos() {
     this.http
-      .get(environment.baseUrl)
+      .get(environment.baseUrl + '/todo-list')
       .subscribe(console.log, console.error, console.log);
   }
 }
