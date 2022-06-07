@@ -10,6 +10,8 @@ export class AddListOverlayComponent implements OnInit {
   name: string | null = null;
 
   @Output()
+  closeWindow = new EventEmitter<string>();
+  @Output()
   newName = new EventEmitter<string>();
   constructor() {}
 
