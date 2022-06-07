@@ -18,6 +18,9 @@ export class DisplayListsComponent implements OnInit {
   todoListRoute = 'todo-list/';
 
   todoLists: TodoList[] = this.todoListHttp.mockTodolists;
+  addTodoList(name: string) {
+    this.todoListHttp.addTodoList('hi');
+  }
 
   ngOnInit(): void {}
 }
