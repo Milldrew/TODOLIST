@@ -11,7 +11,7 @@ export class UserService {
 
   setUser(userDataPayload: any) {
     console.log('before set', userDataPayload);
-    this.userData = Object.assign(this.userData);
+    this.userData = Object.assign(userDataPayload);
     console.log('after set', userDataPayload);
   }
 }

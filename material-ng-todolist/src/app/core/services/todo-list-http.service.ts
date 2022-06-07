@@ -11,22 +11,25 @@ import { UserService } from './user.service';
 export class TodoListHttpService {
   constructor(public http: HttpClient, private userService: UserService) {}
   getHttpOptions() {
-    if (this.userService.userData.accessToken) {
+    if (this.userService.userData) {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: this.userService.userData.accessToken || 'NO TOKEN',
+          Authorization: this.userService.userData.accessToken,
         }),
       };
+      console.table(httpOptions);
+      return httpOptions;
+    } else {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'no toke',
+        }),
+      };
+      console.table(httpOptions);
       return httpOptions;
     }
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'NO TOKEN',
-      }),
-    };
-    return httpOptions;
   }
 
   mockTodolists: TodoList[] = [
