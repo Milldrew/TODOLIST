@@ -60,10 +60,18 @@ export class TodoListHttpService {
       todos: [{ name: 'First Todo', isFinished: true }],
     };
     this.mockTodolists.push(...this.mockTodolists);
-    this.http.post(
-      environment.baseUrl + '/todo-lists',
-      createTodoListDto,
-      this.getHttpOptions()
-    );
+    this.http
+      .post(
+        environment.baseUrl + '/todo-list',
+        createTodoListDto,
+        this.getHttpOptions()
+      )
+      .subscribe(console.log, console.log, console.log);
+  }
+
+  getAllTodos() {
+    this.http
+      .get(environment.baseUrl)
+      .subscribe(console.log, console.error, console.log);
   }
 }
