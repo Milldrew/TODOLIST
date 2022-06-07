@@ -2,7 +2,7 @@ import { SignInDto } from '../models/sign-in-dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/core/models/user';
+import { IncomingUser, User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 
@@ -16,10 +16,13 @@ export class SignInService {
   ) {}
 
   signIn(signInDto: SignInDto, router: Router) {
+    console.log(environment.baseUrl);
     return this.http
       .post<User>(`${environment.baseUrl}/auth/login`, signInDto)
-      .subscribe((dataPayload: User) => {
-        this.userService.setUser(dataPayload);
+      .subscribe((dataPayload: IncomingUser) => {
+        let { access_token, ...payload } = dataPayload;
+        console.log('before setUser');
+        this.userService.setUser({ accessToken: access_token, ...payload });
         router.navigate(['todo-lists']);
       });
   }
