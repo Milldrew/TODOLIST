@@ -20,10 +20,13 @@ export class DisplayListsComponent implements OnInit {
 
   todoLists: TodoList[] = this.todoListHttp.mockTodolists;
   newListsName: string | null = 'hi';
+
   addTodoList(name: string) {
     this.newListsName = name;
-    this.todoListHttp.addTodoList('hi');
+    this.todoListHttp.addTodoList(this.newListsName);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.todoListHttp.getAllTodos();
+  }
 }
