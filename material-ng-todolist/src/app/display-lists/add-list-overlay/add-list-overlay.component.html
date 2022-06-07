@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+  <mat-label>Todo List Name</mat-label>
+  <input [(ngModel)]="name" type="text" matInput />
+</mat-form-field>
+<button mat-button color="primary" (click)="submitName()" type="button">
+  Add
+</button>

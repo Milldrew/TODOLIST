@@ -13,6 +13,23 @@
     </mat-card-actions>
   </mat-card>
 </div>
-<button (click)="addTodoList('name')" class="fab" mat-fab>
+<button
+  #trigger="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  (click)="addListMenuIsOpen = !addListMenuIsOpen"
+  class="fab"
+  mat-fab
+>
   <mat-icon>add</mat-icon>
 </button>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="addListMenuIsOpen"
+>
+  <mat-card class="add-list-overlay">
+    <app-add-list-overlay (newName)="addTodoList($event)">
+    </app-add-list-overlay>
+    {{ newListsName }}
+  </mat-card>
+</ng-template>

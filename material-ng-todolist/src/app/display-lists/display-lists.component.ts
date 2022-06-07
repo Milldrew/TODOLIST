@@ -8,6 +8,7 @@ import { TodoListHttpService } from '../core/services/todo-list-http.service';
   styleUrls: ['./display-lists.component.scss'],
 })
 export class DisplayListsComponent implements OnInit {
+  addListMenuIsOpen = false;
   constructor(
     private readonly todoListHttp: TodoListHttpService,
     public _elementRef: ElementRef<HTMLElement>
@@ -18,7 +19,9 @@ export class DisplayListsComponent implements OnInit {
   todoListRoute = 'todo-list/';
 
   todoLists: TodoList[] = this.todoListHttp.mockTodolists;
+  newListsName: string | null = 'hi';
   addTodoList(name: string) {
+    this.newListsName = name;
     this.todoListHttp.addTodoList('hi');
   }
 
