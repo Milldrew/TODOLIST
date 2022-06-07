@@ -1,11 +1,33 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { TodoList } from '../models/todo-list';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CreateUpdateTodoListDto } from '../models/create-update-todo-list.dto';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListHttpService {
-  constructor() {}
+  constructor(public http: HttpClient, private userService: UserService) {}
+  getHttpOptions() {
+    if (this.userService.userData.accessToken) {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: this.userService.userData.accessToken || 'NO TOKEN',
+        }),
+      };
+      return httpOptions;
+    }
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'NO TOKEN',
+      }),
+    };
+    return httpOptions;
+  }
 
   mockTodolists: TodoList[] = [
     {
@@ -30,6 +52,11 @@ export class TodoListHttpService {
   ];
 
   addTodoList(name: string) {
+    let createTodoListDto: CreateUpdateTodoListDto = {
+      name,
+      todos: [{ name: 'First Todo', isFinished: true }],
+    };
     this.mockTodolists.push(...this.mockTodolists);
+    this.http.post(environment.baseUrl + '/todo-lists', createTodoListDto);
   }
 }

@@ -7,7 +7,7 @@ import { User } from '../models/user';
 export class UserService {
   constructor() {}
 
-  userData: User | {} = {};
+  userData: User;
 
   setUser(userDataPayload: any) {
     console.log('before set', userDataPayload);
