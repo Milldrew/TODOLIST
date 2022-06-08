@@ -8,18 +8,19 @@ import { TodoListHttpService } from '../core/services/todo-list-http.service';
   styleUrls: ['./display-lists.component.scss'],
 })
 export class DisplayListsComponent implements OnInit {
+  // MENU TOGGLE VALUES
   addListMenuIsOpen = false;
   renameListMenuIsOpen = false;
+  //CONSTRUCTOR
   constructor(
     private readonly todoListHttp: TodoListHttpService,
     public _elementRef: ElementRef<HTMLElement>
   ) {
     this._elementRef.nativeElement.classList.add('inherit-background');
   }
-
-  todoLists: TodoList[] | null = null;
+  // PROPERTIES
+  todoLists: TodoList[];
   todoListRoute = 'todo-list/';
-
   newListsName: string | null = 'hi';
 
   addTodoList(name: string) {
@@ -28,7 +29,7 @@ export class DisplayListsComponent implements OnInit {
       (todoListPayload: TodoList) => {
         console.log(todoListPayload, 'PAYLOD');
         if (this.todoLists) {
-          this.todoLists.push(todoListPayload);
+          //this.todoLists.push(todoListPayload);
         }
       },
       console.error,
@@ -37,14 +38,17 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todoLists.push(...this.todoListHttp.lists);
+    /*
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         this.todoListHttp.setTodoLists(listsPayload);
-        this.todoLists = this.todoListHttp.lists;
+        //this.todoLists = this.todoListHttp.lists;
       },
       console.error,
       console.log
     );
+    */
   }
   deleteTodoList(id: number) {
     console.log('before service');
@@ -68,7 +72,7 @@ export class DisplayListsComponent implements OnInit {
         (list) => list.id === this.listId
       );
       const list = this.todoLists.splice(listId, 1)[0];
-      this.todoLists.unshift(Object.assign(list, { name: rename }));
+      //this.todoLists.unshift(Object.assign(list, { name: rename }));
     }
   }
   listId: number;

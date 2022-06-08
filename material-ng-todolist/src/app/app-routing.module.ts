@@ -6,7 +6,7 @@ import { DisplayListsComponent } from './display-lists/display-lists.component';
 import { ViewListComponent } from './display-lists/view-list/view-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: '', redirectTo: 'todo-lists/todo-list/1', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'todo-lists', component: DisplayListsComponent },
