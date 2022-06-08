@@ -60,10 +60,15 @@ export class DisplayListsComponent implements OnInit {
   toggleAddList(value: boolean) {
     this.addListMenuIsOpen = value;
   }
-  renameList(rename: string, todoList: TodoList) {
-    const { name, id, ...rest } = todoList;
-
-    this.todoListHttp.updateTodoList({ name: rename, ...rest }, String(id));
-    alert(rename);
+  renameList(rename: string) {
+    console.log(this.listId, 'id from template');
+    this.todoListHttp
+      .updateTodoList({ name: rename }, String(this.listId))
+      .subscribe(console.log, console.error, console.log);
+    this.todoLists = this.todoListHttp.lists;
+  }
+  listId: number;
+  handleRenameButton(id: number) {
+    this.renameListMenuIsOpen = true;
   }
 }
