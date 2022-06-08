@@ -39,6 +39,7 @@ export class TodoListHttpService {
   }
 
   addTodoList(name: string) {
+    console.log('hello from add  ');
     let createTodoListDto: CreateUpdateTodoListDto = {
       name,
       todos: [{ name: 'First Todo', isFinished: true }],
@@ -67,10 +68,18 @@ export class TodoListHttpService {
   }
 
   updateTodoList(updateTodoListDto: CreateUpdateTodoListDto, id: string) {
-    return this.http.put(
+    let { authorId, ...rest } = updateTodoListDto;
+    updateTodoListDto = rest;
+    console.log('hello from patch');
+    return this.http.patch<TodoList>(
       environment.baseUrl + '/todo-list/' + id,
       updateTodoListDto,
       this.getHttpOptions()
     );
+    const todoIndex = this.lists.findIndex((list: TodoList) => {
+      return String(list.id) === id;
+    });
+
+    Object.assign(this.lists[todoIndex]);
   }
 }
