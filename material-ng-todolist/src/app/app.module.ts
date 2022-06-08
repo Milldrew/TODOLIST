@@ -17,6 +17,7 @@ import { AddListOverlayComponent } from './display-lists/add-list-overlay/add-li
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { RenameOverlayComponent } from './display-lists/rename-overlay/rename-overlay.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     DisplayListsComponent,
     ViewListComponent,
     AddListOverlayComponent,
+    RenameOverlayComponent,
   ],
   imports: [
     FormsModule,

@@ -51,9 +51,6 @@ export class DisplayListsComponent implements OnInit {
     this.todoListHttp.deleteTodoList(String(id));
     console.log('after service');
   }
-  updateTodoList(todoList: TodoList, name: string) {
-    this.todoListHttp.updateTodoList(todoList, name);
-  }
   toggleRenameList(value: boolean) {
     this.renameListMenuIsOpen = value;
   }
@@ -65,7 +62,14 @@ export class DisplayListsComponent implements OnInit {
     this.todoListHttp
       .updateTodoList({ name: rename }, String(this.listId))
       .subscribe(console.log, console.error, console.log);
-    this.todoLists = this.todoListHttp.lists;
+
+    if (this.todoLists && this.listId) {
+      const listId = this.todoLists.findIndex(
+        (list) => list.id === this.listId
+      );
+      const list = this.todoLists.splice(listId, 1)[0];
+      this.todoLists.unshift(Object.assign(list, { name: rename }));
+    }
   }
   listId: number;
   handleRenameButton(id: number) {
