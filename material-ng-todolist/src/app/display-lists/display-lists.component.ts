@@ -45,4 +45,9 @@ export class DisplayListsComponent implements OnInit {
       console.log
     );
   }
+  deleteTodoList(id: number) {
+    console.log('before service');
+    this.todoListHttp.deleteTodoList(String(id));
+    console.log('after service');
+  }
 }

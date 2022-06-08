@@ -9,7 +9,9 @@
         <button mat-raised-button color="primary">VIEW</button>
       </a>
       <button mat-button color="accent">RENAME</button>
-      <button mat-button color="warn">DELETE</button>
+      <button mat-button (click)="deleteTodoList(todoList.id)" color="warn">
+        DELETE
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
