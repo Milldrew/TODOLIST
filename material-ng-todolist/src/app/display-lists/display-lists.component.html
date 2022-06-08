@@ -11,10 +11,26 @@
       <button
         mat-button
         color="accent"
-        (click)="updateTodoList(todoList, 'rename')"
+        #rename="cdkOverlayOrigin"
+        cdkOverlayOrigin
+        (click)="renameListMenuIsOpen = !renameListMenuIsOpen"
       >
         RENAME
       </button>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="rename"
+        [cdkConnectedOverlayOpen]="renameListMenuIsOpen"
+      >
+        <mat-card class="add-list-overlay">
+          <app-add-list-overlay
+            (closeWindow)="toggleAddList($event)"
+            (newName)="addTodoList($event)"
+          >
+          </app-add-list-overlay>
+          {{ newListsName }}
+        </mat-card>
+      </ng-template>
       <button mat-button (click)="deleteTodoList(todoList.id)" color="warn">
         DELETE
       </button>
@@ -36,7 +52,10 @@
   [cdkConnectedOverlayOpen]="addListMenuIsOpen"
 >
   <mat-card class="add-list-overlay">
-    <app-add-list-overlay (newName)="addTodoList($event)">
+    <app-add-list-overlay
+      (closeWindow)="toggleAddList($event)"
+      (newName)="addTodoList($event)"
+    >
     </app-add-list-overlay>
     {{ newListsName }}
   </mat-card>

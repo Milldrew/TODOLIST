@@ -9,6 +9,7 @@ import { TodoListHttpService } from '../core/services/todo-list-http.service';
 })
 export class DisplayListsComponent implements OnInit {
   addListMenuIsOpen = false;
+  renameListMenuIsOpen = false;
   constructor(
     private readonly todoListHttp: TodoListHttpService,
     public _elementRef: ElementRef<HTMLElement>
@@ -52,5 +53,8 @@ export class DisplayListsComponent implements OnInit {
   }
   updateTodoList(todoList: TodoList, name: string) {
     this.todoListHttp.updateTodoList(todoList, name);
+  }
+  toggleAddList(value: boolean) {
+    this.addListMenuIsOpen = value;
   }
 }
