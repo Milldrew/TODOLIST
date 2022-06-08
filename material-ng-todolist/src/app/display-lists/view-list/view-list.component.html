@@ -6,10 +6,10 @@
       [selected]="todo.isFinished"
       *ngFor="let todo of todoListPayload.todos"
       disableRipple="true"
-      appClickStopPropagation
     >
       <div class="list-content">
         <button
+          appClickStopPropagation
           (click)="todoMenuIsOpen = !todoMenuIsOpen"
           #trigger="cdkOverlayOrigin"
           cdk-overlay-origin

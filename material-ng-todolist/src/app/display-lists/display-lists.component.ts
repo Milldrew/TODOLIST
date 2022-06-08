@@ -19,7 +19,17 @@ export class DisplayListsComponent implements OnInit {
     this._elementRef.nativeElement.classList.add('inherit-background');
   }
   // PROPERTIES
-  todoLists: TodoList[];
+  todoLists: TodoList[] = [
+    {
+      id: 1,
+      name: 'name',
+      todos: [
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+      ],
+    },
+  ];
   todoListRoute = 'todo-list/';
   newListsName: string | null = 'hi';
 
