@@ -32,34 +32,22 @@ export class TodoListHttpService {
     }
   }
 
-  lists: TodoList[];
-
   addTodoList(name: string) {
     let createTodoListDto: CreateUpdateTodoListDto = {
       name,
       todos: [{ name: 'First Todo', isFinished: true }],
     };
-    this.http
-      .post(
-        environment.baseUrl + '/todo-list',
-        createTodoListDto,
-        this.getHttpOptions()
-      )
-      .subscribe(console.log, console.log, console.log);
+    this.http.post<TodoList>(
+      environment.baseUrl + '/todo-list',
+      createTodoListDto,
+      this.getHttpOptions()
+    );
   }
 
   getAllTodos() {
-    this.http
-      .get<TodoList[]>(
-        environment.baseUrl + '/todo-list',
-        this.getHttpOptions()
-      )
-      .subscribe(
-        (listPayload: TodoList[]) => {
-          this.lists = listPayload;
-        },
-        console.error,
-        console.log
-      );
+    return this.http.get<TodoList[]>(
+      environment.baseUrl + '/todo-list',
+      this.getHttpOptions()
+    );
   }
 }
