@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CreateUpdateTodoListDto } from 'src/app/core/models/create-update-todo-list.dto';
+import { Todo } from 'src/app/core/models/todo';
 import { TodoList } from 'src/app/core/models/todo-list';
 import { TodoListHttpService } from 'src/app/core/services/todo-list-http.service';
 import { TodoListsTransformationsService } from 'src/app/core/services/todo-lists-transformations.service';
@@ -11,7 +13,7 @@ import { TodoListsTransformationsService } from 'src/app/core/services/todo-list
 })
 export class ViewListComponent implements OnInit {
   todoListId: number | null = null;
-  todoListPayload: TodoList | null = null;
+  todoListPayload: CreateUpdateTodoListDto;
   constructor(
     public readonly todoListHttp: TodoListHttpService,
     public route: ActivatedRoute,
@@ -23,11 +25,24 @@ export class ViewListComponent implements OnInit {
     );
   }
 
+  setTodo: Todo;
   closeWindow(event: boolean) {
     this.todoMenuIsOpen = event;
     console.log(event);
   }
-  renameTodo(event: string) {}
+  addTodo(event: string) {
+    if (this.todoListPayload && Array.isArray(this.todoListPayload.todos)) {
+      let updateTodoListDto = this.todoListPayload.todos.push({
+        name: event,
+        isFinished: false,
+      });
+      console.table(updateTodoListDto);
+      this.todoListHttp.updateTodoList(
+        updateTodoListDto,
+        String(this.todoListId)
+      );
+    }
+  }
 
   ngOnInit(): void {}
   todoMenuIsOpen = true;
