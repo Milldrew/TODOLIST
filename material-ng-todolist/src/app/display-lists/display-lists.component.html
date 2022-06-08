@@ -23,11 +23,11 @@
         [cdkConnectedOverlayOpen]="renameListMenuIsOpen"
       >
         <mat-card class="add-list-overlay">
-          <app-add-list-overlay
+          <app-rename-overlay
             (closeWindow)="toggleAddList($event)"
             (newName)="addTodoList($event)"
           >
-          </app-add-list-overlay>
+          </app-rename-overlay>
           {{ newListsName }}
         </mat-card>
       </ng-template>
