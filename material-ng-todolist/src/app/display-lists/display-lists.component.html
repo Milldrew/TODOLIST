@@ -24,8 +24,8 @@
       >
         <mat-card class="add-list-overlay">
           <app-rename-overlay
-            (closeWindow)="toggleAddList($event)"
-            (newName)="addTodoList($event)"
+            (closeWindow)="toggleRenameList($event)"
+            (newName)="renameList($event, todoList)"
           >
           </app-rename-overlay>
           {{ newListsName }}

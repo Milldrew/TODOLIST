@@ -54,7 +54,16 @@ export class DisplayListsComponent implements OnInit {
   updateTodoList(todoList: TodoList, name: string) {
     this.todoListHttp.updateTodoList(todoList, name);
   }
+  toggleRenameList(value: boolean) {
+    this.renameListMenuIsOpen = value;
+  }
   toggleAddList(value: boolean) {
     this.addListMenuIsOpen = value;
+  }
+  renameList(rename: string, todoList: TodoList) {
+    const { name, id, ...rest } = todoList;
+
+    this.todoListHttp.updateTodoList({ name: rename, ...rest }, String(id));
+    alert(rename);
   }
 }
