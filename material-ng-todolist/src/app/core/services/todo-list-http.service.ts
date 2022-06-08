@@ -56,4 +56,9 @@ export class TodoListHttpService {
       this.getHttpOptions()
     );
   }
+  deleteTodo(id: string) {
+    this.http
+      .delete(environment.baseUrl + 'todo-lists/' + id)
+      .subscribe(console.log, console.error, console.log);
+  }
 }
