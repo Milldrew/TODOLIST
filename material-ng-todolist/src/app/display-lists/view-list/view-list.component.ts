@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoList } from 'src/app/core/models/todo-list';
+import { TodoListHttpService } from 'src/app/core/services/todo-list-http.service';
 import { TodoListsTransformationsService } from 'src/app/core/services/todo-lists-transformations.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ViewListComponent implements OnInit {
   todoListId: number | null = null;
   todoListPayload: TodoList | null = null;
   constructor(
+    public readonly todoListHttp: TodoListHttpService,
     public route: ActivatedRoute,
     private readonly todoListsTransformer: TodoListsTransformationsService
   ) {
@@ -20,6 +22,12 @@ export class ViewListComponent implements OnInit {
       this.todoListId
     );
   }
+
+  closeWindow(event: boolean) {
+    this.todoMenuIsOpen = event;
+    console.log(event);
+  }
+  renameTodo(event: string) {}
 
   ngOnInit(): void {}
   todoMenuIsOpen = true;

@@ -48,6 +48,10 @@
   [cdkConnectedOverlayOpen]="todoMenuIsOpen"
 >
   <mat-card class="edit-todo-overlay">
-    <app-add-todo-overlay> </app-add-todo-overlay>
+    <app-add-todo-overlay
+      (closeWindowEvent)="closeWindow($event)"
+      (newNameEvent)="renameTodo($event)"
+    >
+    </app-add-todo-overlay>
   </mat-card>
 </ng-template>

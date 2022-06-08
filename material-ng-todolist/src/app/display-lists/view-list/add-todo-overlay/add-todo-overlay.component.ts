@@ -10,20 +10,20 @@ export class AddTodoOverlayComponent implements OnInit {
   name: string | null = null;
 
   @Output()
-  closeWindow = new EventEmitter<boolean>();
+  closeWindowEvent = new EventEmitter<boolean>();
   @Output()
-  newName = new EventEmitter<string>();
+  newNameEvent = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit(): void {}
 
   submitName() {
     console.log(this.name);
-    if (this.name) this.newName.emit(this.name);
-    this.closeWindow.emit(false);
+    if (this.name) this.newNameEvent.emit(this.name);
+    this.closeWindowEvent.emit(false);
   }
 
   close() {
-    this.closeWindow.emit(false);
+    this.closeWindowEvent.emit(false);
   }
 }
