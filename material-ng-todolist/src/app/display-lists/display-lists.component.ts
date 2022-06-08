@@ -16,24 +16,33 @@ export class DisplayListsComponent implements OnInit {
     this._elementRef.nativeElement.classList.add('inherit-background');
   }
 
+  todoLists: TodoList[] | null = null;
   todoListRoute = 'todo-list/';
 
-  todoLists: TodoList[] = this.todoListHttp.lists;
   newListsName: string | null = 'hi';
 
   addTodoList(name: string) {
     this.newListsName = name;
-    this.todoListHttp.addTodoList(this.newListsName);
+    this.todoListHttp.addTodoList(this.newListsName).subscribe(
+      (todoListPayload: TodoList) => {
+        console.log(todoListPayload, 'PAYLOD');
+        if (this.todoLists) {
+          this.todoLists.push(todoListPayload);
+        }
+      },
+      console.error,
+      console.log
+    );
   }
 
   ngOnInit(): void {
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
-        this.todoLists = listsPayload;
+        this.todoListHttp.setTodoLists(listsPayload);
+        this.todoLists = this.todoListHttp.lists;
       },
       console.error,
       console.log
     );
-    this.todoLists = this.todoListHttp.lists;
   }
 }
