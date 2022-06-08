@@ -6,12 +6,20 @@
       [selected]="todo.isFinished"
       *ngFor="let todo of todoListPayload.todos"
       disableRipple="true"
+      appClickStopPropagation
     >
       <div class="list-content">
-        <button #trigger="cdkOverlayOrigin" cdk-overlay-origin mat-icon-button>
+        <button
+          (click)="todoMenuIsOpen = !todoMenuIsOpen"
+          #trigger="cdkOverlayOrigin"
+          cdk-overlay-origin
+          mat-icon-button
+        >
           <mat-icon>more_vert</mat-icon>
         </button>
-        {{ todo.name }}
+        <span class="todo-text">
+          {{ todo.name }}
+        </span>
       </div>
     </mat-list-option>
   </mat-selection-list>
