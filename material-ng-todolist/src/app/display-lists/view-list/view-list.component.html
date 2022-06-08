@@ -2,9 +2,15 @@
 <mat-card *ngIf="todoListPayload">
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
   <mat-selection-list #todos>
-    <mat-list-option *ngFor="let todo of todoListPayload.todos">
+    <mat-list-option
+      [selected]="todo.isFinished"
+      *ngFor="let todo of todoListPayload.todos"
+      disableRipple="true"
+    >
       <div class="list-content">
-        <mat-icon>folder</mat-icon>
+        <button #trigger="cdkOverlayOrigin" cdk-overlay-origin mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
         {{ todo.name }}
       </div>
     </mat-list-option>
@@ -12,3 +18,19 @@
 
   <p>Completed todos: {{ todos.selectedOptions.selected.length }}</p>
 </mat-card>
+<button
+  #trigger="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  (click)="todoMenuIsOpen = !todoMenuIsOpen"
+  class="fab"
+  mat-fab
+>
+  <mat-icon>add</mat-icon>
+</button>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="todoMenuIsOpen"
+>
+  <mat-card class="edit-todo-overlay"> 'hello world' </mat-card>
+</ng-template>
