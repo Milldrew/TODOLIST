@@ -22,5 +22,6 @@ export class ViewListComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  todoMenuIsOpen = true;
+  todoMenuIsOpen = false;
+  moreVertIsOpen = true;
 }

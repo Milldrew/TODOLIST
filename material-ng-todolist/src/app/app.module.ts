@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { RenameOverlayComponent } from './display-lists/rename-overlay/rename-overlay.component';
+import { ClickStopPropagationDirective } from './core/directives/click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RenameOverlayComponent } from './display-lists/rename-overlay/rename-ov
     ViewListComponent,
     AddListOverlayComponent,
     RenameOverlayComponent,
+    ClickStopPropagationDirective,
   ],
   imports: [
     FormsModule,

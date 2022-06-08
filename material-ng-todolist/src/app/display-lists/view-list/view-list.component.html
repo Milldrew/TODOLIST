@@ -10,7 +10,7 @@
       <div class="list-content">
         <button
           appClickStopPropagation
-          (click)="todoMenuIsOpen = !todoMenuIsOpen"
+          (click)="moreVertIsOpen = !moreVertIsOpen"
           #moreVert="cdkOverlayOrigin"
           cdk-overlay-origin
           mat-icon-button
@@ -20,7 +20,7 @@
         <ng-template
           cdkConnectedOverlay
           [cdkConnectedOverlayOrigin]="moreVert"
-          [cdkConnectedOverlayOpen]="todoMenuIsOpen"
+          [cdkConnectedOverlayOpen]="moreVertIsOpen"
         >
           <mat-card class="edit-todo-overlay"> 'more vert menu' </mat-card>
         </ng-template>

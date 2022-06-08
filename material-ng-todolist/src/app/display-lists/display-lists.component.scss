@@ -9,12 +9,6 @@ mat-card {
   }
 }
 
-.fab {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-}
-
 .add-list-overlay {
   display: flex;
   flex-direction: column;
@@ -22,4 +16,9 @@ mat-card {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.fab {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
 }
