@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { RenameOverlayComponent } from './display-lists/rename-overlay/rename-overlay.component';
 import { ClickStopPropagationDirective } from './core/directives/click-stop-propagation.directive';
+import { AddTodoOverlayComponent } from './display-lists/view-list/add-todo-overlay/add-todo-overlay.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ClickStopPropagationDirective } from './core/directives/click-stop-prop
     AddListOverlayComponent,
     RenameOverlayComponent,
     ClickStopPropagationDirective,
+    AddTodoOverlayComponent,
   ],
   imports: [
     FormsModule,
