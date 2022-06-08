@@ -27,9 +27,13 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todoListHttp
-      .getAllTodos()
-      .subscribe((listsPayload: TodoList[]) => {}, console.error, console.log);
+    this.todoListHttp.getAllTodos().subscribe(
+      (listsPayload: TodoList[]) => {
+        this.todoLists = listsPayload;
+      },
+      console.error,
+      console.log
+    );
     this.todoLists = this.todoListHttp.lists;
   }
 }
