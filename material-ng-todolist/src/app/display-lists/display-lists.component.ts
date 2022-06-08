@@ -70,5 +70,6 @@ export class DisplayListsComponent implements OnInit {
   listId: number;
   handleRenameButton(id: number) {
     this.renameListMenuIsOpen = true;
+    this.listId = id;
   }
 }
