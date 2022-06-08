@@ -3,7 +3,10 @@
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
   <mat-selection-list #todos>
     <mat-list-option *ngFor="let todo of todoListPayload.todos">
-      {{ todo.name }}
+      <div class="list-content">
+        <mat-icon>folder</mat-icon>
+        {{ todo.name }}
+      </div>
     </mat-list-option>
   </mat-selection-list>
 
