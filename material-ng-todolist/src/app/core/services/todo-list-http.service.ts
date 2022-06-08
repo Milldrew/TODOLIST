@@ -56,9 +56,13 @@ export class TodoListHttpService {
       this.getHttpOptions()
     );
   }
-  deleteTodo(id: string) {
+  deleteTodoList(id: string) {
+    const todoIndex = this.lists.findIndex((list: TodoList) => {
+      return String(list.id) === id;
+    });
+    this.lists.splice(todoIndex, 1);
     this.http
-      .delete(environment.baseUrl + 'todo-lists/' + id)
+      .delete(environment.baseUrl + '/todo-list/' + id, this.getHttpOptions())
       .subscribe(console.log, console.error, console.log);
   }
 }
