@@ -11,12 +11,19 @@
         <button
           appClickStopPropagation
           (click)="todoMenuIsOpen = !todoMenuIsOpen"
-          #trigger="cdkOverlayOrigin"
+          #moreVert="cdkOverlayOrigin"
           cdk-overlay-origin
           mat-icon-button
         >
           <mat-icon>more_vert</mat-icon>
         </button>
+        <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="moreVert"
+          [cdkConnectedOverlayOpen]="todoMenuIsOpen"
+        >
+          <mat-card class="edit-todo-overlay"> 'more vert menu' </mat-card>
+        </ng-template>
         <span class="todo-text">
           {{ todo.name }}
         </span>
@@ -40,5 +47,5 @@
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="todoMenuIsOpen"
 >
-  <mat-card class="edit-todo-overlay"> 'hello world' </mat-card>
+  <mat-card class="edit-todo-overlay"> 'add todo menu' </mat-card>
 </ng-template>
