@@ -65,4 +65,12 @@ export class TodoListHttpService {
       .delete(environment.baseUrl + '/todo-list/' + id, this.getHttpOptions())
       .subscribe(console.log, console.error, console.log);
   }
+
+  updateTodoList(updateTodoListDto: CreateUpdateTodoListDto, id: string) {
+    return this.http.put(
+      environment.baseUrl + '/todo-list/' + id,
+      updateTodoListDto,
+      this.getHttpOptions()
+    );
+  }
 }
