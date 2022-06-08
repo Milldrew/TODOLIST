@@ -10,6 +10,12 @@ import { UserService } from './user.service';
 })
 export class TodoListHttpService {
   constructor(public http: HttpClient, private userService: UserService) {}
+
+  lists: TodoList[];
+
+  setTodoLists(lists: TodoList[]) {
+    this.lists = lists;
+  }
   getHttpOptions() {
     if (this.userService.userData) {
       let httpOptions = {
@@ -37,7 +43,7 @@ export class TodoListHttpService {
       name,
       todos: [{ name: 'First Todo', isFinished: true }],
     };
-    this.http.post<TodoList>(
+    return this.http.post<TodoList>(
       environment.baseUrl + '/todo-list',
       createTodoListDto,
       this.getHttpOptions()
