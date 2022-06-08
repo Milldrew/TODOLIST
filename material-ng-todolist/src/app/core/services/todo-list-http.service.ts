@@ -79,7 +79,8 @@ export class TodoListHttpService {
     const todoIndex = this.lists.findIndex((list: TodoList) => {
       return String(list.id) === id;
     });
-
-    Object.assign(this.lists[todoIndex]);
+    this.lists.push(
+      Object.assign(this.lists.splice(todoIndex, 1)[0], updateTodoListDto)
+    );
   }
 }
