@@ -10,7 +10,7 @@ export class TypeormConnection {
         port: 5432,
         username: 'postgres',
         password: 'pass123',
-        database: 'postgres',
+        database: 'todo_list',
         autoLoadEntities: true,
         synchronize: true,
       };
