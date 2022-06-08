@@ -10,7 +10,7 @@ export class AddListOverlayComponent implements OnInit {
   name: string | null = null;
 
   @Output()
-  closeWindow = new EventEmitter<string>();
+  closeWindow = new EventEmitter<boolean>();
   @Output()
   newName = new EventEmitter<string>();
   constructor() {}
@@ -20,5 +20,10 @@ export class AddListOverlayComponent implements OnInit {
   submitName() {
     console.log(this.name);
     if (this.name) this.newName.emit(this.name);
+    this.closeWindow.emit(false);
+  }
+
+  close() {
+    this.closeWindow.emit(false);
   }
 }
