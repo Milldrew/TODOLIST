@@ -29,7 +29,11 @@
           <mat-card class="edit-todo-overlay"> 'more vert menu' </mat-card>
         </ng-template>
 
-        <button appClickStopPropagation mat-icon-button>
+        <button
+          appClickStopPropagation
+          (click)="deleteTodo(todo.name)"
+          mat-icon-button
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>

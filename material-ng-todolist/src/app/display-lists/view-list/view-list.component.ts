@@ -43,6 +43,15 @@ export class ViewListComponent implements OnInit {
       );
     }
   }
+  deleteTodo(name: string) {
+    if (this.todoListPayload && this.todoListPayload.todos) {
+      const todoIndex = this.todoListPayload.todos.findIndex(
+        (todo) => todo.name === name
+      );
+
+      this.todoListPayload.todos.splice(todoIndex, 1);
+    }
+  }
 
   ngOnInit(): void {}
   todoMenuIsOpen = true;
