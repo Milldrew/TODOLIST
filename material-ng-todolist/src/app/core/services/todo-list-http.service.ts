@@ -55,7 +55,7 @@ export class TodoListHttpService {
     console.log('hello from add  ');
     let createTodoListDto: CreateUpdateTodoListDto = {
       name,
-      todos: [{ name: 'First Todo', isFinished: true }],
+      todos: [],
     };
     return this.http.post<TodoList>(
       environment.baseUrl + '/todo-list',
