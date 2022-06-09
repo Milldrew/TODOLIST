@@ -1,4 +1,3 @@
-{{ todoListPayload | json }}
 <mat-card *ngIf="todoListPayload">
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
   <mat-selection-list #todos>
@@ -70,3 +69,8 @@
     </app-add-todo-overlay>
   </mat-card>
 </ng-template>
+<a [routerLink]="['../../../todo-lists']">
+  <button class="back" mat-fab>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</a>

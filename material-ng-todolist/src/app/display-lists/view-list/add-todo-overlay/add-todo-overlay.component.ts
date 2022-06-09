@@ -25,9 +25,7 @@ export class AddTodoOverlayComponent implements OnInit {
   ngAfterViewInit(): void {
     this.nameInputEl.nativeElement.focus();
   }
-  ngOnInit(): void {
-    //this.nameInputEl.nativeElement.focus();
-  }
+  ngOnInit(): void {}
 
   submitName() {
     console.log(this.name);
