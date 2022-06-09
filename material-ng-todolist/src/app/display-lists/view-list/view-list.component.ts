@@ -64,7 +64,15 @@ export class ViewListComponent implements OnInit {
     console.log(name);
     if (this.todoListPayload && this.todoListPayload.todos) {
       const index = this.todoListPayload.todos.findIndex(
-        (todo) => todo.name === name
+        (todo) => todo.name === this.todoName
+      );
+
+      const todo = this.todoListPayload.todos.splice(index, 1)[0];
+      todo.name = name;
+      this.todoListPayload.todos.unshift(todo);
+      this.todoListHttp.updateTodoList(
+        this.todoListPayload,
+        String(this.todoListId)
       );
     }
 
