@@ -14,7 +14,7 @@
         </span>
         <button
           appClickStopPropagation
-          (click)="moreVertIsOpen = !moreVertIsOpen"
+          (click)="handleOpenRenameOverlay(todo.name)"
           #moreVert="cdkOverlayOrigin"
           cdk-overlay-origin
           mat-icon-button

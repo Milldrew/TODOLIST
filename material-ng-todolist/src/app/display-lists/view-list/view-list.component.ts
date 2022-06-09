@@ -25,7 +25,6 @@ export class ViewListComponent implements OnInit {
     );
   }
 
-  setTodo: Todo;
   closeWindow(event: boolean) {
     this.todoMenuIsOpen = event;
     console.log(event);
@@ -63,9 +62,21 @@ export class ViewListComponent implements OnInit {
 
   handleRenameTodo(name: string) {
     console.log(name);
+    if (this.todoListPayload && this.todoListPayload.todos) {
+      const index = this.todoListPayload.todos.findIndex(
+        (todo) => todo.name === name
+      );
+    }
+
+    //this.todoListHttp.updateTodoList(, this.todoListId)
+  }
+  handleOpenRenameOverlay(todoName: string) {
+    this.todoName = todoName;
+    this.moreVertIsOpen = true;
   }
 
   ngOnInit(): void {}
   todoMenuIsOpen = false;
   moreVertIsOpen = true;
+  todoName: string;
 }
