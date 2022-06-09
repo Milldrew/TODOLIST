@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -14,7 +21,13 @@ export class AddTodoOverlayComponent implements OnInit {
   newNameEvent = new EventEmitter<string>();
   constructor() {}
 
-  ngOnInit(): void {}
+  @ViewChild('nameInput') nameInputEl: ElementRef;
+  ngAfterViewInit(): void {
+    this.nameInputEl.nativeElement.focus();
+  }
+  ngOnInit(): void {
+    //this.nameInputEl.nativeElement.focus();
+  }
 
   submitName() {
     console.log(this.name);
