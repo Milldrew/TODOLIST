@@ -11,7 +11,9 @@ import { UserService } from './user.service';
 export class TodoListHttpService {
   constructor(public http: HttpClient, private userService: UserService) {}
 
-  lists: TodoList[] = [
+  lists: TodoList[];
+
+  /*= [
     {
       id: 1,
       name: 'name',
@@ -22,6 +24,7 @@ export class TodoListHttpService {
       ],
     },
   ];
+  */
 
   setTodoLists(lists: TodoList[]) {
     this.lists = lists;
@@ -79,6 +82,7 @@ export class TodoListHttpService {
 
   updateTodoList(updateTodoListDto: any, id: string) {
     let { authorId, ...rest } = updateTodoListDto;
+    delete rest.id;
     updateTodoListDto = rest;
     console.log('hello from patch');
     return this.http.patch<TodoList>(
