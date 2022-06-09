@@ -77,7 +77,7 @@ export class TodoListHttpService {
       .subscribe(console.log, console.error, console.log);
   }
 
-  updateTodoList(updateTodoListDto: CreateUpdateTodoListDto, id: string) {
+  updateTodoList(updateTodoListDto: any, id: string) {
     let { authorId, ...rest } = updateTodoListDto;
     updateTodoListDto = rest;
     console.log('hello from patch');
