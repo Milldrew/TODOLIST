@@ -50,6 +50,10 @@ export class ViewListComponent implements OnInit {
       );
 
       this.todoListPayload.todos.splice(todoIndex, 1);
+      this.todoListHttp.updateTodoList(
+        this.todoListPayload,
+        String(this.todoListId)
+      );
     }
   }
 
