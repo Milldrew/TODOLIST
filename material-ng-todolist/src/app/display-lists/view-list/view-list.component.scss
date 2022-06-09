@@ -1,6 +1,6 @@
 .list-content {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 1fr 4fr;
   height: 100%;
   width: 100%;
 }
@@ -20,4 +20,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }

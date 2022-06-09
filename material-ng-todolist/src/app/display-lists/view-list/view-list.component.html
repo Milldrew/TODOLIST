@@ -3,11 +3,15 @@
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
   <mat-selection-list #todos>
     <mat-list-option
+      checkboxPosition="before"
       [selected]="todo.isFinished"
       *ngFor="let todo of todoListPayload.todos"
       disableRipple="true"
     >
       <div class="list-content">
+        <span class="todo-text">
+          {{ todo.name }}
+        </span>
         <button
           appClickStopPropagation
           (click)="moreVertIsOpen = !moreVertIsOpen"
@@ -15,7 +19,7 @@
           cdk-overlay-origin
           mat-icon-button
         >
-          <mat-icon>more_vert</mat-icon>
+          <mat-icon>edit</mat-icon>
         </button>
         <ng-template
           cdkConnectedOverlay
@@ -24,9 +28,10 @@
         >
           <mat-card class="edit-todo-overlay"> 'more vert menu' </mat-card>
         </ng-template>
-        <span class="todo-text">
-          {{ todo.name }}
-        </span>
+
+        <button appClickStopPropagation mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </mat-list-option>
   </mat-selection-list>
