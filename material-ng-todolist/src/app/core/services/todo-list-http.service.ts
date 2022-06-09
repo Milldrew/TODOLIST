@@ -21,6 +21,24 @@ export class TodoListHttpService {
         { name: 'name', isFinished: false },
       ],
     },
+    {
+      id: 2,
+      name: 'name',
+      todos: [
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+      ],
+    },
+    {
+      id: 3,
+      name: 'name',
+      todos: [
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+        { name: 'name', isFinished: false },
+      ],
+    },
   ];
 
   setTodoLists(lists: TodoList[]) {
