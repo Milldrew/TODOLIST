@@ -57,7 +57,15 @@ export class ViewListComponent implements OnInit {
     }
   }
 
+  handleCloseRenameOverlay(closeEvent: boolean) {
+    this.moreVertIsOpen = false;
+  }
+
+  handleRenameTodo(name: string) {
+    console.log(name);
+  }
+
   ngOnInit(): void {}
-  todoMenuIsOpen = true;
-  moreVertIsOpen = false;
+  todoMenuIsOpen = false;
+  moreVertIsOpen = true;
 }

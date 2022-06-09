@@ -26,7 +26,13 @@
           [cdkConnectedOverlayOrigin]="moreVert"
           [cdkConnectedOverlayOpen]="moreVertIsOpen"
         >
-          <mat-card class="edit-todo-overlay"> 'more vert menu' </mat-card>
+          <mat-card class="edit-todo-overlay">
+            <app-rename-todo-overlay
+              (closeWindowEvent)="handleCloseRenameOverlay($event)"
+              (newNameEvent)="handleRenameTodo($event)"
+            >
+            </app-rename-todo-overlay>
+          </mat-card>
         </ng-template>
 
         <button
