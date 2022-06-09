@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -7,6 +14,10 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./rename-todo-overlay.component.scss'],
 })
 export class RenameTodoOverlayComponent implements OnInit {
+  @ViewChild('nameInput') nameInputEl: ElementRef;
+  ngAfterViewInit(): void {
+    this.nameInputEl.nativeElement.focus();
+  }
   name: string | null = null;
   @Output()
   closeWindowEvent = new EventEmitter<boolean>();
