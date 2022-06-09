@@ -8,7 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class AddTodoOverlayComponent implements OnInit {
   name: string | null = null;
-
   @Output()
   closeWindowEvent = new EventEmitter<boolean>();
   @Output()
