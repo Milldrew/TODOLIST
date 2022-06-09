@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,6 +15,12 @@ import { FormControl } from '@angular/forms';
 })
 export class AddListOverlayComponent implements OnInit {
   name: string | null = null;
+
+  @ViewChild('nameInput') nameInputEl: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.nameInputEl.nativeElement.focus();
+  }
 
   @Output()
   closeWindow = new EventEmitter<boolean>();
