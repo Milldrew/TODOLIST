@@ -31,15 +31,15 @@ export class ViewListComponent implements OnInit {
   }
   addTodo(event: string) {
     if (this.todoListPayload && Array.isArray(this.todoListPayload.todos)) {
-      let updateTodoListDto = this.todoListPayload.todos.push({
+      this.todoListPayload.todos.push({
         name: event,
         isFinished: false,
       });
-      console.table(updateTodoListDto);
-      this.todoListHttp.updateTodoList(
-        updateTodoListDto,
-        String(this.todoListId)
-      );
+      let updateTodoListDto = this.todoListPayload;
+      console.table(updateTodoListDto.todos);
+      this.todoListHttp
+        .updateTodoList(updateTodoListDto, String(this.todoListId))
+        .subscribe(console.log, console.error, console.log);
     }
   }
   deleteTodo(name: string) {
