@@ -7,17 +7,12 @@ import { User } from '../models/user';
 export class UserService {
   constructor() {}
 
-  userData: User = {
-    id: 1,
-    username: 'foobar@gmail.com',
-    password: 'foobar',
-    accessToken:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2…jUwfQ.p4D_y7J8maMXLnRr28keTi24u1IdgvixkW9knMbwIqk',
-  };
+  userData: User;
 
   setUser(userDataPayload: any) {
     console.log('before set', userDataPayload);
     this.userData = Object.assign(userDataPayload);
+    localStorage.setItem('userData', JSON.stringify(this.userData));
     console.log('after set', userDataPayload);
   }
 }
