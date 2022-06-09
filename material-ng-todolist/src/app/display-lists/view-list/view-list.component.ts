@@ -49,10 +49,9 @@ export class ViewListComponent implements OnInit {
       );
 
       this.todoListPayload.todos.splice(todoIndex, 1);
-      this.todoListHttp.updateTodoList(
-        this.todoListPayload,
-        String(this.todoListId)
-      );
+      this.todoListHttp
+        .updateTodoList(this.todoListPayload, String(this.todoListId))
+        .subscribe(console.log, console.error, console.log);
     }
   }
 
@@ -70,13 +69,10 @@ export class ViewListComponent implements OnInit {
       const todo = this.todoListPayload.todos.splice(index, 1)[0];
       todo.name = name;
       this.todoListPayload.todos.unshift(todo);
-      this.todoListHttp.updateTodoList(
-        this.todoListPayload,
-        String(this.todoListId)
-      );
+      this.todoListHttp
+        .updateTodoList(this.todoListPayload, String(this.todoListId))
+        .subscribe(console.log, console.error, console.log);
     }
-
-    //this.todoListHttp.updateTodoList(, this.todoListId)
   }
   handleOpenRenameOverlay(todoName: string) {
     this.todoName = todoName;
@@ -87,4 +83,20 @@ export class ViewListComponent implements OnInit {
   todoMenuIsOpen = false;
   moreVertIsOpen = false;
   todoName: string;
+  currentTodo: Todo;
+  setCurrentTodo(todo: any) {
+    this.currentTodo = todo;
+  }
+  handleSelectionChange(eventPayload: any) {
+    setTimeout(() => {
+      this.currentTodo.isFinished = !this.currentTodo.isFinished;
+      console.log(this.currentTodo, 'from selection change');
+
+      if (this.todoListId) {
+        this.todoListHttp
+          .updateTodoList(this.todoListPayload, String(this.todoListId))
+          .subscribe(console.log, console.error, console.log);
+      }
+    });
+  }
 }

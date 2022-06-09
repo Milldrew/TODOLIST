@@ -19,7 +19,9 @@ export class DisplayListsComponent implements OnInit {
     this._elementRef.nativeElement.classList.add('inherit-background');
   }
   // PROPERTIES
-  todoLists: TodoList[] = [
+  todoLists: TodoList[];
+
+  /*= [
     {
       id: 1,
       name: 'name',
@@ -30,6 +32,7 @@ export class DisplayListsComponent implements OnInit {
       ],
     },
   ];
+  */
   todoListRoute = 'todo-list/';
   newListsName: string | null = 'hi';
 
@@ -39,7 +42,7 @@ export class DisplayListsComponent implements OnInit {
       (todoListPayload: TodoList) => {
         console.log(todoListPayload, 'PAYLOD');
         if (this.todoLists) {
-          //this.todoLists.push(todoListPayload);
+          this.todoLists.push(todoListPayload);
         }
       },
       console.error,
@@ -48,17 +51,20 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todoLists.push(...this.todoListHttp.lists);
-    /*
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
-        this.todoListHttp.setTodoLists(listsPayload);
-        //this.todoLists = this.todoListHttp.lists;
+        if (listsPayload.length > 0) {
+          this.todoListHttp.setTodoLists(listsPayload);
+        }
+        this.todoLists = this.todoListHttp.lists;
       },
-      console.error,
+      (error) => {
+        this.todoLists = this.todoListHttp.lists;
+
+        console.error(error);
+      },
       console.log
     );
-    */
   }
   deleteTodoList(id: number) {
     console.log('before service');
@@ -82,7 +88,7 @@ export class DisplayListsComponent implements OnInit {
         (list) => list.id === this.listId
       );
       const list = this.todoLists.splice(listId, 1)[0];
-      //this.todoLists.unshift(Object.assign(list, { name: rename }));
+      this.todoLists.unshift(Object.assign(list, { name: rename }));
     }
   }
   listId: number;

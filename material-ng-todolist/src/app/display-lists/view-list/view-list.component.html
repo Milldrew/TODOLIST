@@ -1,7 +1,8 @@
 <mat-card *ngIf="todoListPayload">
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
-  <mat-selection-list #todos>
+  <mat-selection-list (selectionChange)="handleSelectionChange($event)" #todos>
     <mat-list-option
+      (click)="setCurrentTodo(todo)"
       checkboxPosition="before"
       [selected]="todo.isFinished"
       *ngFor="let todo of todoListPayload.todos"
