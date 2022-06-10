@@ -7,6 +7,7 @@ import { SignInService } from './sign-in.service';
 import { User } from 'src/app/core/models/user';
 import { Router } from '@angular/router';
 import { TodoListHttpService } from 'src/app/core/services/todo-list-http.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,21 +20,10 @@ export class RegisterService {
     private readonly signInService: SignInService
   ) {}
 
+  snackBarTextObervable = of("register's snack bar text");
   register(registerDto: RegisterDto, router: Router) {
     console.log({ registerDto });
     console.log('BASE URL', environment.baseUrl);
-    this.http.post<User>(`${environment.baseUrl}/user`, registerDto).subscribe(
-      (payload: User) => {
-        console.log(payload, 'payload');
-        this.userService.setUser(payload);
-        const signInDto = {
-          username: payload.username,
-          password: payload.password,
-        };
-        this.signInService.signIn(signInDto, router);
-      },
-      console.error,
-      console.log
-    );
+    return this.http.post<User>(`${environment.baseUrl}/user`, registerDto);
   }
 }
