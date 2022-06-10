@@ -2,7 +2,7 @@
 <mat-card class="empty" *ngIf="!todoLists || !todoLists.length"
   ><p>Use the button in the lower right to add a todo list.</p></mat-card
 >
-
+<mat-spinner *ngIf="gettingLists && !todoLists"> </mat-spinner>
 <div class="all-lists" *ngIf="todoLists">
   <mat-card *ngFor="let todoList of todoLists">
     <mat-card-title>{{ todoList.name }}</mat-card-title>

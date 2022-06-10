@@ -1,3 +1,4 @@
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -34,6 +35,7 @@ import { RenameTodoOverlayComponent } from './display-lists/view-list/rename-tod
     RenameTodoOverlayComponent,
   ],
   imports: [
+    MatProgressSpinnerModule,
     FormsModule,
     MatInputModule,
     ReactiveFormsModule,

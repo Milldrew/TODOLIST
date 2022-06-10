@@ -11,7 +11,9 @@ import { UserService } from './user.service';
 export class TodoListHttpService {
   constructor(public http: HttpClient, private userService: UserService) {}
 
-  lists: TodoList[] = [
+  lists: TodoList[];
+
+  /*[
     {
       id: 1,
       name: 'name',
@@ -40,6 +42,7 @@ export class TodoListHttpService {
       ],
     },
   ];
+  */
 
   setTodoLists(lists: TodoList[]) {
     this.lists = lists;

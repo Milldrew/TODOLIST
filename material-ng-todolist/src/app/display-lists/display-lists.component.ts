@@ -15,6 +15,7 @@ import { UserService } from '../core/services/user.service';
   styleUrls: ['./display-lists.component.scss'],
 })
 export class DisplayListsComponent implements OnInit {
+  gettingLists = false;
   //EventsEmitters
   @Output()
   usernameEvent = new EventEmitter<string>();
@@ -68,14 +69,18 @@ export class DisplayListsComponent implements OnInit {
     this.todoLists = this.todoListHttp.lists;
     this.usernameEvent.emit(this.userService.userData.username);
 
+    this.gettingLists = true;
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         if (listsPayload.length > 0) {
           this.todoListHttp.setTodoLists(listsPayload);
         }
+        this.gettingLists = false;
         this.todoLists = this.todoListHttp.lists;
       },
       (error) => {
+        this.gettingLists = false;
+
         this.todoLists = this.todoListHttp.lists;
 
         console.error(error);
