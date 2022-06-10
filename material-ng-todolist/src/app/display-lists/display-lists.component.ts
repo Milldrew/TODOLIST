@@ -65,6 +65,7 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todoLists = this.todoListHttp.lists;
     this.usernameEvent.emit(this.userService.userData.username);
 
     this.todoListHttp.getAllTodos().subscribe(
