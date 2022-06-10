@@ -1,6 +1,23 @@
+@use "../../../responsive.scss" as responsive;
+:host {
+  display: flex;
+  justify-content: center;
+}
+mat-card {
+  width: 90%;
+  @include responsive.for-size(Medium) {
+    width: 80%;
+  }
+  @include responsive.for-size(Large) {
+    width: 70%;
+  }
+  @include responsive.for-size(XLarge) {
+    width: 60%;
+  }
+}
 .list-content {
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr;
+  grid-template-columns: 3fr 1fr 1fr;
   height: 100%;
   width: 100%;
 }
