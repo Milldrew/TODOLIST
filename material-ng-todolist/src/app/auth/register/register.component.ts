@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
 
   matcher = new AuthErrorStateMatcher();
   constructor(
+    private _regSnackBar: MatSnackBar,
     private readonly register: RegisterService,
     public router: Router
   ) {}
@@ -60,5 +62,7 @@ export class RegisterComponent implements OnInit {
       this.router
     );
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._regSnackBar.open('hello', 'DISMISS', { verticalPosition: 'top' });
+  }
 }
