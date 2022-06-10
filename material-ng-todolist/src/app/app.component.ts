@@ -10,6 +10,9 @@ export class AppComponent implements OnInit {
   title = 'material-ng-todolist';
   constructor(private readonly userService: UserService) {}
   username: string;
+  signOut() {
+    this.userService.deleteLocalToken();
+  }
 
   ngOnInit() {
     this.userService.checkLocalStorage();

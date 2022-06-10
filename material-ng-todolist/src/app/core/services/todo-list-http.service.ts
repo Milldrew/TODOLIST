@@ -52,16 +52,16 @@ export class TodoListHttpService {
           Authorization: this.userService.userData.accessToken,
         }),
       };
-      console.table(httpOptions);
+      console.log('from get http options');
       return httpOptions;
     } else {
       let httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          Authorization: 'no toke',
+          Authorization: 'no token',
         }),
       };
-      console.table(httpOptions);
+      console.table('from get http options');
       return httpOptions;
     }
   }

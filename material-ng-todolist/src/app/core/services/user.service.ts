@@ -11,7 +11,8 @@ export class UserService {
 
   setUser(userDataPayload: any) {
     console.log('before set', userDataPayload);
-    this.userData = Object.assign(this.userData, userDataPayload);
+
+    this.userData = Object.assign(this.userData || {}, userDataPayload);
     localStorage.setItem('userData', JSON.stringify(this.userData));
     console.log('after set', userDataPayload);
   }
@@ -20,5 +21,11 @@ export class UserService {
     if (user) {
       this.userData = JSON.parse(user);
     }
+  }
+
+  deleteLocalToken() {
+    const user = localStorage.removeItem('userData');
+
+    Object.assign(this.userData, { username: '', accessToken: '', id: 0 });
   }
 }
