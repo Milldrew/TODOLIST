@@ -54,6 +54,9 @@ export class DisplayListsComponent implements OnInit {
         console.log(todoListPayload, 'PAYLOD');
         if (this.todoLists) {
           this.todoLists.push(todoListPayload);
+        } else {
+          this.todoLists = [todoListPayload];
+          this.todoListHttp.lists = this.todoLists;
         }
       },
       console.error,
@@ -64,8 +67,6 @@ export class DisplayListsComponent implements OnInit {
   ngOnInit(): void {
     this.usernameEvent.emit(this.userService.userData.username);
 
-    console.log('http lists', this.todoListHttp.lists);
-    this.todoLists = this.todoListHttp.lists;
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         if (listsPayload.length > 0) {

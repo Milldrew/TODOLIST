@@ -1,4 +1,7 @@
-<h1>Todo Lists</h1>
+<h1 *ngIf="todoLists && todoLists.length">Todo Lists</h1>
+<mat-card class="empty" *ngIf="!todoLists || !todoLists.length"
+  ><p>Use the button in the lower right to add a todo list.</p></mat-card
+>
 
 <div class="all-lists" *ngIf="todoLists">
   <mat-card *ngFor="let todoList of todoLists">
