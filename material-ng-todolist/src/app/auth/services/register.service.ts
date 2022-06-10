@@ -22,24 +22,18 @@ export class RegisterService {
   register(registerDto: RegisterDto, router: Router) {
     console.log({ registerDto });
     console.log('BASE URL', environment.baseUrl);
-    this.http
-      .post<User>(
-        `${environment.baseUrl}/user`,
-        registerDto,
-        this.todoList.getHttpOptions()
-      )
-      .subscribe(
-        (payload: User) => {
-          console.log(payload);
-          this.userService.setUser(payload);
-          const signInDto = {
-            username: payload.username,
-            password: payload.password,
-          };
-          this.signInService.signIn(signInDto, router);
-        },
-        console.error,
-        console.log
-      );
+    this.http.post<User>(`${environment.baseUrl}/user`, registerDto).subscribe(
+      (payload: User) => {
+        console.log(payload, 'payload');
+        this.userService.setUser(payload);
+        const signInDto = {
+          username: payload.username,
+          password: payload.password,
+        };
+        this.signInService.signIn(signInDto, router);
+      },
+      console.error,
+      console.log
+    );
   }
 }
