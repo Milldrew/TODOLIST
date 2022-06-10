@@ -9,6 +9,9 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
+import { IncomingUser, User } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
+import { SignInService } from '../services/sign-in.service';
 
 export class AuthErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -40,6 +43,8 @@ export class RegisterComponent implements OnInit {
 
   matcher = new AuthErrorStateMatcher();
   constructor(
+    private readonly signInService: SignInService,
+    private readonly userService: UserService,
     private _regSnackBar: MatSnackBar,
     private readonly register: RegisterService,
     public router: Router
@@ -54,15 +59,59 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.register.register(
-      {
-        username: this.emailFormControl.value,
-        password: this.passwordFormControl.value,
-      },
-      this.router
-    );
+    this.register
+      .register(
+        {
+          username: this.emailFormControl.value,
+          password: this.passwordFormControl.value,
+        },
+        this.router
+      )
+      .subscribe(
+        (payload: User) => {
+          this.regSnackBarOpen(`${payload.username} registered.`);
+          console.log(payload, 'payload');
+          this.userService.setUser({ username: payload.username });
+          const signInDto = {
+            username: payload.username,
+            password: payload.password,
+          };
+          this.signInService.signIn(signInDto, this.router).subscribe(
+            (dataPayload: IncomingUser) => {
+              this.regSnackBarOpen(` Signed In!`);
+              console.log('datapayload', dataPayload);
+              let { access_token, ...payload } = dataPayload;
+              console.log('before setUser', payload);
+              this.userService.setUser({
+                accessToken: 'Bearer ' + access_token,
+                ...payload,
+              });
+              this.userService.setUser({
+                username: signInDto.username.replace(/@.*$/, ''),
+              });
+              this.router.navigate(['todo-lists']);
+            },
+            console.error,
+            console.log
+          );
+        },
+        console.error,
+        console.log
+      );
   }
   ngOnInit(): void {
-    this._regSnackBar.open('hello', 'DISMISS', { verticalPosition: 'top' });
+    this.register.snackBarTextObervable.subscribe(
+      console.log,
+      console.error,
+      console.log
+    );
+  }
+  regSnackBarOpen(message: string) {
+    this._regSnackBar.open(message, 'DISMISS', {
+      verticalPosition: 'top',
+    });
+    setTimeout(() => {
+      this._regSnackBar.dismiss();
+    }, 3500);
   }
 }
