@@ -62,11 +62,10 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.usernameEvent.emit(this.userService.userData.username);
+    this.usernameEvent.emit(this.userService.userData.username);
 
     console.log('http lists', this.todoListHttp.lists);
     this.todoLists = this.todoListHttp.lists;
-    /*
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         if (listsPayload.length > 0) {
@@ -81,7 +80,6 @@ export class DisplayListsComponent implements OnInit {
       },
       console.log
     );
-    */
   }
   deleteTodoList(id: number) {
     console.log('before service');
