@@ -16,9 +16,6 @@ import { UserService } from '../core/services/user.service';
 })
 export class DisplayListsComponent implements OnInit {
   gettingLists = false;
-  //EventsEmitters
-  @Output()
-  usernameEvent = new EventEmitter<string>();
   // MENU TOGGLE VALUES
   addListMenuIsOpen = false;
   renameListMenuIsOpen = false;
@@ -67,7 +64,6 @@ export class DisplayListsComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoLists = this.todoListHttp.lists;
-    this.usernameEvent.emit(this.userService.userData.username);
 
     this.gettingLists = true;
     this.todoListHttp.getAllTodos().subscribe(
