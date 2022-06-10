@@ -9,7 +9,7 @@
 
 mat-card {
   margin: {
-    bottom: 15px;
+    bottom: 35px;
   }
 }
 
@@ -32,9 +32,9 @@ mat-card {
     width: 80%;
   }
   @include responsive.for-size(Large) {
-    width: 80%;
+    width: 70%;
   }
   @include responsive.for-size(XLarge) {
-    width: 70%;
+    width: 60%;
   }
 }

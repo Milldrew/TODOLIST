@@ -15,9 +15,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('before checkLocalStorage');
     this.userService.checkLocalStorage();
-
-    this.username = this.userService.userData.username;
-    console.log('userdata', this.userService.userData);
+    console.log('after check local');
+    if (this.userService.userData) {
+      console.log('after if');
+      this.username = this.userService.userData.username;
+    } else {
+      this.username = '';
+    }
+    console.log('end of init');
   }
 }

@@ -1,9 +1,10 @@
 @use "../../../responsive.scss" as responsive;
 :host {
+  margin-top: 35px;
   display: flex;
   justify-content: center;
 }
-mat-card {
+.entire-list {
   width: 90%;
   @include responsive.for-size(Medium) {
     width: 80%;

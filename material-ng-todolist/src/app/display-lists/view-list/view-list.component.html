@@ -1,4 +1,4 @@
-<mat-card *ngIf="todoListPayload">
+<mat-card *ngIf="todoListPayload" class="entire-list">
   <mat-card-title>{{ todoListPayload.name }}</mat-card-title>
   <mat-selection-list (selectionChange)="handleSelectionChange($event)" #todos>
     <mat-list-option

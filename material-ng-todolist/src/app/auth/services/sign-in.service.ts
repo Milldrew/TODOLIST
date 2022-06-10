@@ -17,20 +17,25 @@ export class SignInService {
 
   signIn(signInDto: SignInDto, router: Router) {
     console.log(environment.baseUrl);
-    this.userService.setUser({
-      username: signInDto.username.replace(/@.*$/, ''),
-    });
+    console.log({ signInDto });
     return this.http
       .post<User>(`${environment.baseUrl}/auth/login`, signInDto)
-      .subscribe((dataPayload: IncomingUser) => {
-        console.log('datapayload', dataPayload);
-        let { access_token, ...payload } = dataPayload;
-        console.log('before setUser', payload);
-        this.userService.setUser({
-          accessToken: 'Bearer ' + access_token,
-          ...payload,
-        });
-        router.navigate(['todo-lists']);
-      });
+      .subscribe(
+        (dataPayload: IncomingUser) => {
+          console.log('datapayload', dataPayload);
+          let { access_token, ...payload } = dataPayload;
+          console.log('before setUser', payload);
+          this.userService.setUser({
+            accessToken: 'Bearer ' + access_token,
+            ...payload,
+          });
+          this.userService.setUser({
+            username: signInDto.username.replace(/@.*$/, ''),
+          });
+          router.navigate(['todo-lists']);
+        },
+        console.error,
+        console.log
+      );
   }
 }
