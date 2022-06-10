@@ -6,7 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { IncomingUser } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
+import { SignInDto } from '../models/sign-in-dto';
 import { SignInService } from '../services/sign-in.service';
 
 export class AuthErrorStateMatcher implements ErrorStateMatcher {
@@ -40,6 +44,8 @@ export class SignInComponent implements OnInit {
 
   matcher = new AuthErrorStateMatcher();
   constructor(
+    private readonly userService: UserService,
+    private _regSnackBar: MatSnackBar,
     public router: Router,
     private readonly signInService: SignInService
   ) {}
@@ -53,14 +59,41 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    this.signInService.signIn(
-      {
-        username: this.emailFormControl.value,
-        password: this.passwordFormControl.value,
-      },
-      this.router
-    );
+    this.signInService
+      .signIn(
+        {
+          username: this.emailFormControl.value,
+          password: this.passwordFormControl.value,
+        },
+        this.router
+      )
+      .subscribe(
+        (dataPayload: IncomingUser) => {
+          this.regSnackBarOpen(` Signed In!`);
+          console.log('datapayload', dataPayload);
+          let { access_token, ...payload } = dataPayload;
+          console.log('before setUser', payload);
+          this.userService.setUser({
+            accessToken: 'Bearer ' + access_token,
+            ...payload,
+          });
+          this.userService.setUser({
+            username: this.emailFormControl.value.replace(/@.*$/, ''),
+          });
+          this.router.navigate(['todo-lists']);
+        },
+        console.error,
+        console.log
+      );
   }
 
   ngOnInit(): void {}
+  regSnackBarOpen(message: string) {
+    this._regSnackBar.open(message, 'DISMISS', {
+      verticalPosition: 'top',
+    });
+    setTimeout(() => {
+      this._regSnackBar.dismiss();
+    }, 3500);
+  }
 }
