@@ -1,6 +1,6 @@
 <h1>TodoLists</h1>
 
-<div *ngIf="todoLists">
+<div class="all-lists" *ngIf="todoLists">
   <mat-card *ngFor="let todoList of todoLists">
     <mat-card-title>{{ todoList.name }}</mat-card-title>
     <mat-card-subtitle>Start</mat-card-subtitle>

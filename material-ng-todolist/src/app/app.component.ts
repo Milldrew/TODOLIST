@@ -9,7 +9,12 @@ import { UserService } from './core/services/user.service';
 export class AppComponent implements OnInit {
   title = 'material-ng-todolist';
   constructor(private readonly userService: UserService) {}
+  userName: string;
+
   ngOnInit() {
     this.userService.checkLocalStorage();
+    if (this.userService.userData.username) {
+      this.userName = this.userService.userData.username;
+    }
   }
 }

@@ -1,11 +1,15 @@
+@use "../../responsive.scss" as responsive;
 :host {
   min-height: 100vh;
   min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 mat-card {
   margin: {
-    bottom: 5px;
+    bottom: 15px;
   }
 }
 
@@ -21,4 +25,12 @@ mat-card {
   position: fixed;
   bottom: 40px;
   right: 40px;
+}
+.all-lists {
+  @include responsive.for-size(Large) {
+    width: 80%;
+  }
+  @include responsive.for-size(XLarge) {
+    width: 80%;
+  }
 }

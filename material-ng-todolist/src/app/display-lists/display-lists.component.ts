@@ -1,6 +1,13 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TodoList } from '../core/models/todo-list';
 import { TodoListHttpService } from '../core/services/todo-list-http.service';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-display-lists',
@@ -8,11 +15,15 @@ import { TodoListHttpService } from '../core/services/todo-list-http.service';
   styleUrls: ['./display-lists.component.scss'],
 })
 export class DisplayListsComponent implements OnInit {
+  //EventsEmitters
+  @Output()
+  usernameEvent = new EventEmitter<string>();
   // MENU TOGGLE VALUES
   addListMenuIsOpen = false;
   renameListMenuIsOpen = false;
   //CONSTRUCTOR
   constructor(
+    private readonly userService: UserService,
     private readonly todoListHttp: TodoListHttpService,
     public _elementRef: ElementRef<HTMLElement>
   ) {
@@ -51,6 +62,7 @@ export class DisplayListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usernameEvent.emit(this.userService.userData.username);
     this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         if (listsPayload.length > 0) {
