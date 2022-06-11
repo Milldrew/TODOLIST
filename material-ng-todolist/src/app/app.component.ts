@@ -22,9 +22,11 @@ export class AppComponent implements OnInit {
     console.log('after check local');
     if (this.userService.userData) {
       console.log('after if');
-      this.username = this.userService.userData.username;
+      let firstLetter = this.userService.userData.username[0];
+      this.username =
+        firstLetter.toUpperCase() + this.userService.userData.username.slice(1);
     } else {
-      this.username = '';
+      this.username = 'Todo List App';
     }
     console.log('end of init');
   }
