@@ -89,7 +89,9 @@ export class RegisterComponent implements OnInit {
               this.userService.setUser({
                 username: signInDto.username.replace(/@.*$/, ''),
               });
-              this.router.navigate(['todo-lists']);
+              this.router
+                .navigate(['todo-lists'])
+                .then(() => location.reload());
             },
             console.error,
             console.log
@@ -99,13 +101,7 @@ export class RegisterComponent implements OnInit {
         console.log
       );
   }
-  ngOnInit(): void {
-    this.register.snackBarTextObervable.subscribe(
-      console.log,
-      console.error,
-      console.log
-    );
-  }
+  ngOnInit(): void {}
   regSnackBarOpen(message: string) {
     this._regSnackBar.open(message, 'DISMISS', {
       verticalPosition: 'top',
