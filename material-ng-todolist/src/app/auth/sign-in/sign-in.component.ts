@@ -80,7 +80,7 @@ export class SignInComponent implements OnInit {
           this.userService.setUser({
             username: this.emailFormControl.value.replace(/@.*$/, ''),
           });
-          this.router.navigate(['todo-lists']);
+          this.router.navigate(['todo-lists']).then(() => location.reload);
         },
         console.error,
         console.log
