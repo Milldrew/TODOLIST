@@ -84,7 +84,11 @@ export class SignInComponent implements OnInit {
       );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.userService.userData && this.userService.userData.accessToken) {
+      this.router.navigate(['todo-lists']);
+    }
+  }
   regSnackBarOpen(message: string) {
     this._regSnackBar.open(message, 'DISMISS', {
       verticalPosition: 'top',
