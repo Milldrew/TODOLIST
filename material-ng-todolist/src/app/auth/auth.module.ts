@@ -11,11 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [SignInComponent, RegisterComponent],
   imports: [
-    RouterModule,
+    AppRoutingModule,
     MatSnackBarModule,
     MatFormFieldModule,
     CommonModule,
