@@ -23,6 +23,7 @@ import { RenameOverlayComponent } from './display-lists/rename-overlay/rename-ov
 import { ClickStopPropagationDirective } from './core/directives/click-stop-propagation.directive';
 import { AddTodoOverlayComponent } from './display-lists/view-list/add-todo-overlay/add-todo-overlay.component';
 import { RenameTodoOverlayComponent } from './display-lists/view-list/rename-todo-overlay/rename-todo-overlay.component';
+import { OgpComponent } from './ogp/ogp.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RenameTodoOverlayComponent } from './display-lists/view-list/rename-tod
     ClickStopPropagationDirective,
     AddTodoOverlayComponent,
     RenameTodoOverlayComponent,
+    OgpComponent,
   ],
   imports: [
     MatSnackBarModule,
