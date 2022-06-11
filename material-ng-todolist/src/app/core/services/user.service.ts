@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { User } from '../models/user';
 
 @Injectable({
@@ -10,11 +10,8 @@ export class UserService {
   userData: User;
 
   setUser(userDataPayload: any) {
-    console.log('before set', userDataPayload);
-
     this.userData = Object.assign(this.userData || {}, userDataPayload);
     localStorage.setItem('userData', JSON.stringify(this.userData));
-    console.log('after set', userDataPayload);
   }
   checkLocalStorage() {
     const user = localStorage.getItem('userData');
