@@ -10,10 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [SignInComponent, RegisterComponent],
   imports: [
+    RouterModule,
     MatSnackBarModule,
     MatFormFieldModule,
     CommonModule,
