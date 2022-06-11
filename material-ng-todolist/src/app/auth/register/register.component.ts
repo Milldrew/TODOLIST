@@ -97,7 +97,10 @@ export class RegisterComponent implements OnInit {
             console.log
           );
         },
-        console.error,
+        (registerError) => {
+          console.error(registerError);
+          this.regSnackBarOpen(registerError.error.message);
+        },
         console.log
       );
   }
