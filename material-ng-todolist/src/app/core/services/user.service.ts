@@ -18,7 +18,6 @@ export class UserService {
     if (user) {
       this.userData = JSON.parse(user);
     }
-    console.log('end check local');
   }
 
   deleteLocalToken() {

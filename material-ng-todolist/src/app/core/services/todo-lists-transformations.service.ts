@@ -10,9 +10,6 @@ export class TodoListsTransformationsService {
   constructor(private readonly todoListHttp: TodoListHttpService) {}
 
   getTodoList(id: number): CreateUpdateTodoListDto {
-    console.log('get todo list');
-    console.log(id);
-    console.log(typeof id);
     let result: TodoList | undefined = this.todoListHttp.lists.find(
       (list: TodoList) => list.id === id
     );

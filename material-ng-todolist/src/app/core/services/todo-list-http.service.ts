@@ -55,7 +55,6 @@ export class TodoListHttpService {
           Authorization: this.userService.userData.accessToken,
         }),
       };
-      console.log('from get http options');
       return httpOptions;
     } else {
       let httpOptions = {
@@ -64,13 +63,11 @@ export class TodoListHttpService {
           Authorization: 'no token',
         }),
       };
-      console.table('from get http options');
       return httpOptions;
     }
   }
 
   addTodoList(name: string) {
-    console.log('hello from add  ');
     let createTodoListDto: CreateUpdateTodoListDto = {
       name,
       todos: [],
@@ -102,7 +99,6 @@ export class TodoListHttpService {
     let { authorId, ...rest } = updateTodoListDto;
     delete rest.id;
     updateTodoListDto = rest;
-    console.log('hello from patch');
     return this.http.patch<TodoList>(
       environment.baseUrl + '/todo-list/' + id,
       updateTodoListDto,

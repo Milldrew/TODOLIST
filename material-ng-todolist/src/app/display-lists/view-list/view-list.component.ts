@@ -27,7 +27,6 @@ export class ViewListComponent implements OnInit {
 
   closeWindow(event: boolean) {
     this.todoMenuIsOpen = event;
-    console.log(event);
   }
   addTodo(event: string) {
     if (this.todoListPayload && Array.isArray(this.todoListPayload.todos)) {
@@ -36,7 +35,6 @@ export class ViewListComponent implements OnInit {
         isFinished: false,
       });
       let updateTodoListDto = this.todoListPayload;
-      console.table(updateTodoListDto.todos);
       this.todoListHttp
         .updateTodoList(updateTodoListDto, String(this.todoListId))
         .subscribe(console.log, console.error, console.log);
@@ -60,7 +58,6 @@ export class ViewListComponent implements OnInit {
   }
 
   handleRenameTodo(name: string) {
-    console.log(name);
     if (this.todoListPayload && this.todoListPayload.todos) {
       const index = this.todoListPayload.todos.findIndex(
         (todo) => todo.name === this.todoName
@@ -90,7 +87,6 @@ export class ViewListComponent implements OnInit {
   handleSelectionChange(eventPayload: any) {
     setTimeout(() => {
       this.currentTodo.isFinished = !this.currentTodo.isFinished;
-      console.log(this.currentTodo, 'from selection change');
 
       if (this.todoListId) {
         this.todoListHttp

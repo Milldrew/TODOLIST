@@ -31,7 +31,6 @@ export class AddListOverlayComponent implements OnInit {
   ngOnInit(): void {}
 
   submitName() {
-    console.log(this.name);
     if (this.name) this.newName.emit(this.name);
     this.closeWindow.emit(false);
   }

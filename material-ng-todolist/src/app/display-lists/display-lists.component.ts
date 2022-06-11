@@ -49,7 +49,6 @@ export class DisplayListsComponent implements OnInit {
     this.newListsName = name;
     this.todoListHttp.addTodoList(this.newListsName).subscribe(
       (todoListPayload: TodoList) => {
-        console.log(todoListPayload, 'PAYLOD');
         if (this.todoLists) {
           this.todoLists.push(todoListPayload);
         } else {
@@ -85,9 +84,7 @@ export class DisplayListsComponent implements OnInit {
     );
   }
   deleteTodoList(id: number) {
-    console.log('before service');
     this.todoListHttp.deleteTodoList(String(id));
-    console.log('after service');
   }
   toggleRenameList(value: boolean) {
     this.renameListMenuIsOpen = value;
@@ -96,7 +93,6 @@ export class DisplayListsComponent implements OnInit {
     this.addListMenuIsOpen = value;
   }
   renameList(rename: string) {
-    console.log(this.listId, 'id from template');
     this.todoListHttp
       .updateTodoList({ name: rename }, String(this.listId))
       .subscribe(console.log, console.error, console.log);

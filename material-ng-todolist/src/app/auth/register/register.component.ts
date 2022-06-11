@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
   passwordToggleValue: 'text' | 'password' = 'text';
 
   togglePassword() {
-    console.log(this.passwordToggleValue);
     this.passwordToggleValue === 'text'
       ? (this.passwordToggleValue = 'password')
       : (this.passwordToggleValue = 'text');
@@ -70,7 +69,6 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (payload: User) => {
           this.regSnackBarOpen(`${payload.username} registered.`);
-          console.log(payload, 'payload');
           this.userService.setUser({ username: payload.username });
           const signInDto = {
             username: payload.username,
@@ -79,9 +77,7 @@ export class RegisterComponent implements OnInit {
           this.signInService.signIn(signInDto, this.router).subscribe(
             (dataPayload: IncomingUser) => {
               this.regSnackBarOpen(` Signed In!`);
-              console.log('datapayload', dataPayload);
               let { access_token, ...payload } = dataPayload;
-              console.log('before setUser', payload);
               this.userService.setUser({
                 accessToken: 'Bearer ' + access_token,
                 ...payload,
