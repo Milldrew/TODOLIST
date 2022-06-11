@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
       console.log('after if');
       let firstLetter = this.userService.userData.username[0];
       this.username =
-        firstLetter.toUpperCase() + this.userService.userData.username.slice(1);
+        firstLetter.toUpperCase() +
+        this.userService.userData.username.slice(1, 13);
     } else {
       this.username = 'Todo List App';
     }

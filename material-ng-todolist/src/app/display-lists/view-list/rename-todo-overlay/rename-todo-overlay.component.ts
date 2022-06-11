@@ -28,7 +28,6 @@ export class RenameTodoOverlayComponent implements OnInit {
   ngOnInit(): void {}
 
   submitName() {
-    console.log(this.name);
     if (this.name) this.newNameEvent.emit(this.name);
     this.closeWindowEvent.emit(false);
   }
