@@ -24,6 +24,7 @@ import { ClickStopPropagationDirective } from './core/directives/click-stop-prop
 import { AddTodoOverlayComponent } from './display-lists/view-list/add-todo-overlay/add-todo-overlay.component';
 import { RenameTodoOverlayComponent } from './display-lists/view-list/rename-todo-overlay/rename-todo-overlay.component';
 import { OgpComponent } from './ogp/ogp.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { OgpComponent } from './ogp/ogp.component';
     AuthModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
