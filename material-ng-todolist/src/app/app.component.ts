@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { UserService } from './core/services/user.service';
 
 @Component({
@@ -7,8 +7,10 @@ import { UserService } from './core/services/user.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'material-ng-todolist';
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    public appRootEl: ElementRef,
+    private readonly userService: UserService
+  ) {}
   username: string;
   signOut() {
     this.userService.deleteLocalToken();
