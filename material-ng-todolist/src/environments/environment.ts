@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://192.168.0.143:3333',
+  baseUrl: 'https://todolist-efqlyoo5ia-uc.a.run.app',
   //baseUrl: 'http://localhost:3000',
   //http://192.168.0.143/
 };
