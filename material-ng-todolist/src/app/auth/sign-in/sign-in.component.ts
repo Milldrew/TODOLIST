@@ -52,7 +52,6 @@ export class SignInComponent implements OnInit {
   passwordToggleValue: 'text' | 'password' = 'text';
 
   togglePassword() {
-    console.log(this.passwordToggleValue);
     this.passwordToggleValue === 'text'
       ? (this.passwordToggleValue = 'password')
       : (this.passwordToggleValue = 'text');
@@ -70,9 +69,7 @@ export class SignInComponent implements OnInit {
       .subscribe(
         (dataPayload: IncomingUser) => {
           this.regSnackBarOpen(` Signed In!`);
-          console.log('datapayload', dataPayload);
           let { access_token, ...payload } = dataPayload;
-          console.log('before setUser', payload);
           this.userService.setUser({
             accessToken: 'Bearer ' + access_token,
             ...payload,
