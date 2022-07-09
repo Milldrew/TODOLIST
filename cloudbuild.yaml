@@ -19,3 +19,4 @@ steps:
   - 'us-central1'
 images:
 - 'gcr.io/singular-apogee-355822/todo_list:$COMMIT_SHA'
+timeout: 1200s
