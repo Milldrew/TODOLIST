@@ -2,10 +2,10 @@
 steps:
 #Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/singular-apogee-355822/todo_list:$COMMIT_SHA', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA']
+  args: ['push', 'gcr.io/singular-apogee-355822/todo_list:$COMMIT_SHA']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
@@ -14,8 +14,8 @@ steps:
   - 'deploy'
   - 'todolist'
   - '--image'
-  - 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA'
+  - 'gcr.io/singular-apogee-355822/todo_list:$COMMIT_SHA'
   - '--region'
   - 'us-central1'
 images:
-- 'gcr.io/todo-list-351520/todo_list:$COMMIT_SHA'
+- 'gcr.io/singular-apogee-355822/todo_list:$COMMIT_SHA'
