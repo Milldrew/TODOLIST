@@ -17,9 +17,9 @@ export class TypeormConnection {
     } else {
       ormConfig = {
         type: 'postgres',
-        host: '34.132.66.79',
+        host: '35.193.146.14',
         port: 5432,
-        username: 'pass123',
+        username: 'postgres',
         password: 'pass123',
         database: 'postgres',
         autoLoadEntities: true,
