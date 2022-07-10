@@ -4,6 +4,7 @@ export class TypeormConnection {
   getConfig() {
     let ormConfig: TypeOrmModuleOptions;
     if (process.env.DEVELOPMENT) {
+      console.log('development config');
       ormConfig = {
         type: 'postgres',
         host: 'localhost',
@@ -15,6 +16,7 @@ export class TypeormConnection {
         synchronize: true,
       };
     } else {
+      console.log('production config');
       ormConfig = {
         type: 'postgres',
         host: '35.193.146.14',
