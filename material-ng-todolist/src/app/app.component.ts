@@ -17,11 +17,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('before checkLocalStorage');
     this.userService.checkLocalStorage();
-    console.log('after check local');
     if (this.userService.userData) {
-      console.log('after if');
       let firstLetter = this.userService.userData.username[0];
       this.username =
         firstLetter.toUpperCase() +
@@ -29,6 +26,5 @@ export class AppComponent implements OnInit {
     } else {
       this.username = 'Todo List App';
     }
-    console.log('end of init');
   }
 }
