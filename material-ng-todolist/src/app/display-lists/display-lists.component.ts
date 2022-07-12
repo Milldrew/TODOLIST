@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TodoList } from '../core/models/todo-list';
 import { TodoListHttpService } from '../core/services/todo-list-http.service';
 import { UserService } from '../core/services/user.service';
@@ -45,9 +46,10 @@ export class DisplayListsComponent implements OnInit {
   todoListRoute = 'todo-list/';
   newListsName: string | null = 'hi';
 
+  subscriptions: Subscription[] = [];
   addTodoList(name: string) {
     this.newListsName = name;
-    this.todoListHttp.addTodoList(this.newListsName).subscribe(
+    const addTSub = this.todoListHttp.addTodoList(this.newListsName).subscribe(
       (todoListPayload: TodoList) => {
         if (this.todoLists) {
           this.todoLists.push(todoListPayload);
@@ -59,13 +61,14 @@ export class DisplayListsComponent implements OnInit {
       console.error,
       console.log
     );
+    this.subscriptions.push(addTSub);
   }
 
   ngOnInit(): void {
     this.todoLists = this.todoListHttp.lists;
 
     this.gettingLists = true;
-    this.todoListHttp.getAllTodos().subscribe(
+    const getAllSub = this.todoListHttp.getAllTodos().subscribe(
       (listsPayload: TodoList[]) => {
         if (listsPayload.length > 0) {
           this.todoListHttp.setTodoLists(listsPayload);
@@ -82,6 +85,7 @@ export class DisplayListsComponent implements OnInit {
       },
       console.log
     );
+    this.subscriptions.push(getAllSub);
   }
   deleteTodoList(id: number) {
     this.todoListHttp.deleteTodoList(String(id));
@@ -93,9 +97,10 @@ export class DisplayListsComponent implements OnInit {
     this.addListMenuIsOpen = value;
   }
   renameList(rename: string) {
-    this.todoListHttp
+    const renameSub = this.todoListHttp
       .updateTodoList({ name: rename }, String(this.listId))
       .subscribe(console.log, console.error, console.log);
+    this.subscriptions.push(renameSub);
 
     if (this.todoLists && this.listId) {
       const listId = this.todoLists.findIndex(
@@ -109,5 +114,10 @@ export class DisplayListsComponent implements OnInit {
   handleRenameButton(id: number) {
     this.renameListMenuIsOpen = true;
     this.listId = id;
+  }
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 }
