@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroupDirective,
@@ -8,7 +8,8 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IncomingUser } from 'src/app/core/models/user';
+import { Subscription } from 'rxjs';
+import { IncomingUser, User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
 import { SignInDto } from '../models/sign-in-dto';
 import { SignInService } from '../services/sign-in.service';
@@ -32,7 +33,7 @@ export class AuthErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -56,9 +57,9 @@ export class SignInComponent implements OnInit {
       ? (this.passwordToggleValue = 'password')
       : (this.passwordToggleValue = 'text');
   }
-
+  signInSub: Subscription | undefined;
   signIn() {
-    this.signInService
+    this.signInSub = this.signInService
       .signIn(
         {
           username: this.emailFormControl.value,
@@ -82,6 +83,9 @@ export class SignInComponent implements OnInit {
         console.error,
         console.log
       );
+  }
+  ngOnDestroy() {
+    if (this.signInSub) this.signInSub.unsubscribe();
   }
 
   ngOnInit(): void {

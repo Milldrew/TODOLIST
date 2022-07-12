@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://todolist-bmythg3mea-uc.a.run.app/',
+  //  baseUrl: 'https://todolist-bmythg3mea-uc.a.run.app/',
+  //
   //baseUrl: 'http://localhost:3000',
-  //http://192.168.0.143/
+  baseUrl: 'http://192.168.0.143:3000',
 };
 
 /*
