@@ -49,18 +49,16 @@ export class DisplayListsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   addTodoList(name: string) {
     this.newListsName = name;
-    const addTSub = this.todoListHttp.addTodoList(this.newListsName).subscribe(
-      (todoListPayload: TodoList) => {
+    const addTSub = this.todoListHttp
+      .addTodoList(this.newListsName)
+      .subscribe((todoListPayload: TodoList) => {
         if (this.todoLists) {
           this.todoLists.push(todoListPayload);
         } else {
           this.todoLists = [todoListPayload];
           this.todoListHttp.lists = this.todoLists;
         }
-      },
-      console.error,
-      console.log
-    );
+      }, console.error);
     this.subscriptions.push(addTSub);
   }
 
