@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CreateUpdateTodoListDto } from 'src/app/core/models/create-update-todo-list.dto';
 import { Todo } from 'src/app/core/models/todo';
 import { TodoList } from 'src/app/core/models/todo-list';
@@ -11,7 +12,8 @@ import { TodoListsTransformationsService } from 'src/app/core/services/todo-list
   templateUrl: './view-list.component.html',
   styleUrls: ['./view-list.component.scss'],
 })
-export class ViewListComponent implements OnInit {
+export class ViewListComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] | any[] = [];
   todoListId: number | null = null;
   todoListPayload: CreateUpdateTodoListDto;
   constructor(
@@ -35,9 +37,10 @@ export class ViewListComponent implements OnInit {
         isFinished: false,
       });
       let updateTodoListDto = this.todoListPayload;
-      this.todoListHttp
+      const updateSub = this.todoListHttp
         .updateTodoList(updateTodoListDto, String(this.todoListId))
         .subscribe(console.log, console.error, console.log);
+      this.subscriptions.push(updateSub);
     }
   }
   deleteTodo(name: string) {
@@ -47,9 +50,10 @@ export class ViewListComponent implements OnInit {
       );
 
       this.todoListPayload.todos.splice(todoIndex, 1);
-      this.todoListHttp
+      const deleteSub = this.todoListHttp
         .updateTodoList(this.todoListPayload, String(this.todoListId))
         .subscribe(console.log, console.error, console.log);
+      this.subscriptions.push(deleteSub);
     }
   }
 
@@ -66,9 +70,10 @@ export class ViewListComponent implements OnInit {
       const todo = this.todoListPayload.todos.splice(index, 1)[0];
       todo.name = name;
       this.todoListPayload.todos.unshift(todo);
-      this.todoListHttp
+      const getSub = this.todoListHttp
         .updateTodoList(this.todoListPayload, String(this.todoListId))
         .subscribe(console.log, console.error, console.log);
+      this.subscriptions.push(getSub);
     }
   }
   handleOpenRenameOverlay(todoName: string) {
@@ -89,10 +94,18 @@ export class ViewListComponent implements OnInit {
       this.currentTodo.isFinished = !this.currentTodo.isFinished;
 
       if (this.todoListId) {
-        this.todoListHttp
+        const handSelectionSub = this.todoListHttp
           .updateTodoList(this.todoListPayload, String(this.todoListId))
           .subscribe(console.log, console.error, console.log);
+        this.subscriptions.push(handSelectionSub);
       }
     });
+  }
+  ngOnDestroy() {
+    if (this.subscriptions.length) {
+      this.subscriptions.forEach((sub: Subscription) => {
+        sub.unsubscribe();
+      });
+    }
   }
 }
