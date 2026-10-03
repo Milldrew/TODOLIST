@@ -73,5 +73,9 @@
     <button (click)="signIn()" type="button" mat-raised-button color="primary">
       Sign In
     </button>
+    <div class="demo">
+      <span>or</span>
+      <button mat-stroked-button color="primary" type="button" routerLink="/register" [queryParams]="{ demo: 1 }">Try it without signing up</button>
+    </div>
   </form>
 </mat-card>

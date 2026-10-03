@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { UserService } from './core/services/user.service';
 
@@ -9,11 +10,17 @@ import { UserService } from './core/services/user.service';
 export class AppComponent implements OnInit {
   constructor(
     public appRootEl: ElementRef,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly router: Router
   ) {}
   username: string;
+  get signedIn(): boolean {
+    return !!this.userService.userData?.accessToken;
+  }
   signOut() {
     this.userService.deleteLocalToken();
+    this.username = 'Todo List App';
+    this.router.navigate(['sign-in']);
   }
 
   ngOnInit() {

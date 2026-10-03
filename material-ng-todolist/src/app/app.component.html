@@ -1,24 +1,9 @@
 <mat-toolbar color="primary">
-  <span *ngIf="username">{{ username }}</span>
+  <span>{{ username }}</span>
   <span class="example-spacer"></span>
-  <a href="">
-    <button
-      mat-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-      (click)="signOut()"
-    >
-      Sign Out
-    </button>
-  </a>
-  <a href="">
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>home</mat-icon>
-    </button>
+  <button *ngIf="signedIn" mat-button (click)="signOut()">Sign Out</button>
+  <a mat-icon-button [routerLink]="signedIn ? '/todo-lists' : '/sign-in'" aria-label="Home">
+    <mat-icon>home</mat-icon>
   </a>
 </mat-toolbar>
 

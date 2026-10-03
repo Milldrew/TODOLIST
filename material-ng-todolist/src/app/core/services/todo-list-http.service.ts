@@ -79,6 +79,13 @@ export class TodoListHttpService {
     );
   }
 
+  getTodoList(id: number) {
+    return this.http.get<TodoList>(
+      environment.baseUrl + '/todo-list/' + id,
+      this.getHttpOptions()
+    );
+  }
+
   getAllTodos() {
     return this.http.get<TodoList[]>(
       environment.baseUrl + '/todo-list',

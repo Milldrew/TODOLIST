@@ -22,9 +22,16 @@ export class ViewListComponent implements OnInit, OnDestroy {
     private readonly todoListsTransformer: TodoListsTransformationsService
   ) {
     this.todoListId = Number(this.route.snapshot.paramMap.get('id'));
-    this.todoListPayload = this.todoListsTransformer.getTodoList(
-      this.todoListId
-    );
+    // The cache is only filled by the lists page; a reload or a shared link
+    // used to show a placeholder. Fall back to the API.
+    const cached = this.todoListHttp.lists?.find((l: any) => l.id === this.todoListId);
+    if (cached) {
+      this.todoListPayload = cached;
+    } else {
+      this.subscriptions.push(
+        this.todoListHttp.getTodoList(this.todoListId).subscribe((list) => (this.todoListPayload = list))
+      );
+    }
   }
 
   closeWindow(event: boolean) {

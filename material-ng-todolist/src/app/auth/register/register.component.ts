@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { IncomingUser, User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
@@ -47,8 +47,22 @@ export class RegisterComponent implements OnInit {
     private readonly userService: UserService,
     private _regSnackBar: MatSnackBar,
     private readonly register: RegisterService,
-    public router: Router
+    public router: Router,
+    private readonly route: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    // /register?demo=1 (the sign-in page's "Try it" button) goes straight in.
+    if (this.route.snapshot.queryParamMap.get('demo')) this.tryDemo();
+  }
+
+  /** A throwaway account, so trying the app needs no email or password. */
+  tryDemo() {
+    const id = Math.random().toString(36).slice(2, 10);
+    this.emailFormControl.setValue(`demo-${id}@example.com`);
+    this.passwordFormControl.setValue(Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2));
+    this.registerUser();
+  }
   passwordToggleValue: 'text' | 'password' = 'text';
 
   togglePassword() {
@@ -72,7 +86,8 @@ export class RegisterComponent implements OnInit {
           this.userService.setUser({ username: payload.username });
           const signInDto = {
             username: payload.username,
-            password: payload.password,
+            // The API never returns a password; use the one just typed.
+            password: this.passwordFormControl.value,
           };
           this.signInService.signIn(signInDto, this.router).subscribe(
             (dataPayload: IncomingUser) => {
@@ -100,7 +115,6 @@ export class RegisterComponent implements OnInit {
         console.log
       );
   }
-  ngOnInit(): void {}
   regSnackBarOpen(message: string) {
     this._regSnackBar.open(message, 'DISMISS', {
       verticalPosition: 'top',
