@@ -34,8 +34,8 @@ export class TodoListController {
 
   @UseGuards(JwtAuthGuardService)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todoListService.findOne(+id);
+  findOne(@Request() req, @Param('id') id: string) {
+    return this.todoListService.findOne(+id, req.user['userId']);
   }
 
   @UseGuards(JwtAuthGuardService)
@@ -45,7 +45,6 @@ export class TodoListController {
     @Param('id') id: string,
     @Body() updateTodoListDto: UpdateTodoListDto,
   ) {
-    console.log('UPDATE HERE');
     const authorId = req.user['userId'];
 
     return this.todoListService.update(+id, updateTodoListDto, authorId);
@@ -53,7 +52,7 @@ export class TodoListController {
 
   @UseGuards(JwtAuthGuardService)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todoListService.remove(+id);
+  remove(@Request() req, @Param('id') id: string) {
+    return this.todoListService.remove(+id, req.user['userId']);
   }
 }

@@ -32,8 +32,14 @@ export class TodoListService {
     });
   }
 
-  async findOne(id: number) {
-    const todoList = await this.todoListRepo.findOneBy({ id });
+  /**
+   * Every lookup by id is scoped to its author. These used to load any list
+   * by id, so any signed-in user could read, delete - or, through update's
+   * preload with their own authorId, take over - anyone else's list. Someone
+   * else's list is a 404, the same as one that does not exist.
+   */
+  async findOne(id: number, authorId: number) {
+    const todoList = await this.todoListRepo.findOneBy({ id, authorId });
     if (!todoList) {
       throw new NotFoundException(`Todo List #${id} not found`);
     }
@@ -45,7 +51,7 @@ export class TodoListService {
     updateTodoListDto: UpdateTodoListDto,
     authorId: number,
   ) {
-    console.table({ id, ...updateTodoListDto });
+    await this.findOne(+id, authorId);
     const todoList = await this.todoListRepo.preload({
       id: +id,
       authorId,
@@ -58,11 +64,8 @@ export class TodoListService {
     return this.todoListRepo.save(todoList);
   }
 
-  async remove(id: number) {
-    const todoList = await this.todoListRepo.findOneBy({ id });
-    if (!todoList) {
-      throw new NotFoundException(`Todo List #${id} not found`);
-    }
+  async remove(id: number, authorId: number) {
+    const todoList = await this.findOne(id, authorId);
 
     return this.todoListRepo.remove(todoList);
   }
